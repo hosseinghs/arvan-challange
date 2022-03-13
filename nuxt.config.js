@@ -16,13 +16,12 @@ export default {
 
   // css: ['~/assets/css/main.scss'],
 
-  plugins: [],
+  plugins: ['~/plugins/apiCaller.js'],
 
   components: true,
 
   buildModules: ['@nuxtjs/eslint-module'],
 
-  modules: ['bootstrap-vue/nuxt'],
-
+  modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios'],
   build: {},
 }
