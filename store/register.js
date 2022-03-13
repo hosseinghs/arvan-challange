@@ -1,5 +1,5 @@
 import { User } from '~/models/user'
-
+import { registerUserApi } from '~/services/register'
 export default {
   namespaced: true,
 
@@ -24,6 +24,18 @@ export default {
 
     clearUserState({ commit }) {
       commit('CLEAR_USER_STATE')
+    },
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  api call                                  */
+    /* -------------------------------------------------------------------------- */
+
+    async registerUser({ state }) {
+      const newUser = state.user
+      async function apiCall(api) {
+        console.log(await registerUserApi(api, newUser))
+      }
+      return await this.$apiCaller(apiCall)()
     },
   },
 }
