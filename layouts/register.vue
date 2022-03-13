@@ -1,8 +1,6 @@
 <template>
   <div class="_register_layout">
-    <b-col cols="11" md="6" lg="3">
-      <Register />
-    </b-col>
+    <Nuxt />
   </div>
 </template>
 

@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <b-col cols="11" md="6" lg="3">
+    <Register />
+  </b-col>
 </template>
 
 <script>
