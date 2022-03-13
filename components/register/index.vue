@@ -59,12 +59,12 @@ export default {
     this.clearUserState()
   },
   methods: {
-    ...mapActions('register', ['setUserData', 'clearUserState']),
+    ...mapActions('register', ['setUserData', 'clearUserState','registerUser']),
     resetForm() {
       console.log('reset')
     },
     submitForm() {
-      console.log('submit')
+      this.registerUser()
     },
   },
 }
