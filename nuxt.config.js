@@ -14,6 +14,10 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  env: {
+    baseURL: 'https://api.realworld.io/api',
+  },
+  
   // css: ['~/assets/css/main.scss'],
 
   plugins: ['~/plugins/apiCaller.js'],
