@@ -1,15 +1,16 @@
 <template>
-  <b-form-group role="group" :label="label" class="text-start">
+  <b-form-group
+    role="group"
+    :label="label"
+    :invalid-feedback="errMsg"
+    class="text-start"
+  >
     <b-form-input
+      class="form-control"
       :type="type"
-      aria-describedby="input-live-help input-live-feedback"
+      :required="required"
       v-on="$listeners"
     />
-
-    <!-- This will only be shown if the preceding input has an invalid state -->
-    <b-form-invalid-feedback id="input-live-feedback">
-      {{ errMsg }}
-    </b-form-invalid-feedback>
   </b-form-group>
 </template>
 
@@ -32,7 +33,15 @@ export default {
       default: 'error message',
       required: false,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
   },
-  computed: {},
+  computed: {
+    inputVModel() {
+      return this.vModel
+    },
+  },
 }
 </script>
