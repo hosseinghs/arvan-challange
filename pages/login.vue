@@ -1,18 +1,8 @@
 <template>
   <b-col cols="11" md="6" lg="3">
     <b-card class="_register_wrapper">
-      <b-card-title class="card-title"> Register </b-card-title>
+      <b-card-title class="card-title"> Login </b-card-title>
       <b-form @submit.prevent="submitForm()" @reset="resetForm()">
-        <b-card-text>
-          <FormInput
-            label="User"
-            type="text"
-            err-msg="Required field"
-            required
-            @change="setUserData({ k: 'user', v: $event })"
-          />
-        </b-card-text>
-
         <b-card-text>
           <FormInput
             label="Email"
@@ -34,12 +24,12 @@
         </b-card-text>
 
         <b-button type="submit" class="w-100" variant="primary">
-          Register
+          Login
         </b-button>
         <div class="mt-2">
-          Already Registered?
-          <NuxtLink to="/login">
-            <strong> Login</strong>
+          Don't have account?
+          <NuxtLink to="/">
+            <strong> Register Now</strong>
           </NuxtLink>
         </div>
       </b-form>
