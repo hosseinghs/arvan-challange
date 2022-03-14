@@ -3,7 +3,7 @@
     <LayoutHeader />
     <LayoutLoading />
     <LayoutAlert />
-
+    <LayoutSidebar />
     <div class="_default_layout">
       <Nuxt />
     </div>
