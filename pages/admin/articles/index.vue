@@ -1,44 +1,58 @@
 <template>
   <b-container>
     <h1 class="mb-4">All Posts</h1>
-    <b-table striped hover :fields="fields" :items="articles.articles">
-      /*
-      --------------------------------------------------------------------------
-      */ /* customize table celss */ /*
-      --------------------------------------------------------------------------
-      */
-      <template #cell(author)="data">
-        {{ data.item.author.username }}
-      </template>
+    <div>
+      <b-table
+        v-model="queries.currentPage"
+        hover
+        striped
+        :fields="fields"
+        :items="articles.articles"
+        :per-page="queries.perPage"
+      >
+        /*
+        --------------------------------------------------------------------------
+        */ /* customize table celss */ /*
+        --------------------------------------------------------------------------
+        */
+        <template #cell(author)="data">
+          {{ data.item.author.username }}
+        </template>
 
-      <template #cell(tags)="data">
-        <div v-for="(tag, i) in data.item.tagList" :key="i">
-          <span>{{ tag }} ,</span>
-        </div>
-      </template>
+        <template #cell(tags)="data">
+          <div v-for="(tag, i) in data.item.tagList" :key="i">
+            <span>{{ tag }} ,</span>
+          </div>
+        </template>
 
-      <template #cell(description)="data">
-        {{ data.item.description }}
-      </template>
+        <template #cell(description)="data">
+          {{ data.item.description }}
+        </template>
 
-      <template #cell(createdAt)="data">
-        {{ new Date(data.item.createdAt).toDateString() }}
-      </template>
+        <template #cell(createdAt)="data">
+          {{ new Date(data.item.createdAt).toDateString() }}
+        </template>
 
-      <template #cell(actions)="data">
-        <b-button-group class="mx-1">
-          <b-button>...</b-button>
-          <b-dropdown right>
-            <b-dropdown-item @click.stop="editPost(data.item)">
-              Edit
-            </b-dropdown-item>
-            <b-dropdown-item @click.stop="generateWarningConfig(data.item)">
-              Delete
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-button-group>
-      </template>
-    </b-table>
+        <template #cell(actions)="data">
+          <b-button-group class="mx-1">
+            <b-button>...</b-button>
+            <b-dropdown right>
+              <b-dropdown-item @click.stop="editPost(data.item)">
+                Edit
+              </b-dropdown-item>
+              <b-dropdown-item @click.stop="generateWarningConfig(data.item)">
+                Delete
+              </b-dropdown-item>
+            </b-dropdown>
+          </b-button-group>
+        </template>
+      </b-table>
+      <b-pagination
+        v-model="queries.currentPage"
+        :total-rows="articles.articlesCount"
+        :per-page="queries.perPage"
+      />
+    </div>
     <UiWarning @submitBtnClicked="deleteArticle()" />
   </b-container>
 </template>
@@ -73,6 +87,10 @@ export default {
           key: 'actions',
         },
       ],
+      queries: {
+        perPage: 10,
+        currentPage: 1,
+      },
     }
   },
   computed: {
