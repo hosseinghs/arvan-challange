@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LayoutHeader />
     <LayoutLoading />
     <LayoutAlert />
 
