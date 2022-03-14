@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <b-alert fade dismissible :variant="notif.color" :show="isVisible">{{
-      notif.title
-    }}</b-alert>
-  </div>
+  <b-col cols="2" class="ml-auto mt-3 mr-3">
+    <b-alert fade dismissible :variant="notif.color" :show="isVisible">
+      {{ notif.title }}
+    </b-alert>
+  </b-col>
 </template>
 
 <script>
