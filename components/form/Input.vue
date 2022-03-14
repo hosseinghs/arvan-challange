@@ -1,6 +1,5 @@
 <template>
-  <div role="group" class="text-start">
-    <label for="input-live">{{ label }}</label>
+  <b-form-group role="group" :label="label" class="text-start">
     <b-form-input
       :type="type"
       aria-describedby="input-live-help input-live-feedback"
@@ -11,7 +10,7 @@
     <b-form-invalid-feedback id="input-live-feedback">
       {{ errMsg }}
     </b-form-invalid-feedback>
-  </div>
+  </b-form-group>
 </template>
 
 <script>
