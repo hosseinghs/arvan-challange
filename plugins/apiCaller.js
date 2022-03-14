@@ -46,7 +46,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
         title = title || 'خطایی رخ داده است. مجدد تلاش کنید.'
         timer = timer === undefined ? 5000 : timer
         dispatch('notify', {
-          config: { color: 'error', title },
+          config: { color: 'danger', title },
           timer,
         })
       },
@@ -77,7 +77,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
     },
   })
 
-  const api = $axios.create({ baseURL: env.baseURL, withCredentials: false })
+  const api = $axios.create({ baseURL: env.baseURL })
 
   api.setHeader('Content-Type', 'application/json', ['post'])
 
@@ -93,13 +93,10 @@ export default function ({ $axios, store, env, redirect }, inject) {
         redirect('/')
       }
       console.log(err.response)
-      const msg =
-        err.response.data.message ||
-        err.response.data.error ||
-        'مشکلی پیش آمده است'
+      const msg = 'We have a Problem'
       const payload = {
         config: {
-          color: 'error',
+          color: 'danger',
           title: msg,
         },
         timer: 3000,
