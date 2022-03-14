@@ -29,14 +29,17 @@
         <b-button-group class="mx-1">
           <b-button>...</b-button>
           <b-dropdown right>
-            <b-dropdown-item @click.stop="editPost(data.item)"
-              >Edit</b-dropdown-item
-            >
-            <b-dropdown-item>Delete</b-dropdown-item>
+            <b-dropdown-item @click.stop="editPost(data.item)">
+              Edit
+            </b-dropdown-item>
+            <b-dropdown-item @click.stop="generateWarningConfig(data.item)">
+              Delete
+            </b-dropdown-item>
           </b-dropdown>
         </b-button-group>
       </template>
     </b-table>
+    <UiWarning @submitBtnClicked="deleteArticle()" />
   </b-container>
 </template>
 
@@ -80,14 +83,19 @@ export default {
   },
 
   methods: {
-    ...mapActions('articleManagement', ['getArticles']),
+    ...mapActions('warningGenerator', ['generateWarning']),
+    ...mapActions('articleManagement', ['getArticles', 'deleteArticle']),
     editPost(item) {
       if (!item) return null
       console.log(item)
     },
     generateWarningConfig(item) {
       if (!item) return null
-      console.log(item)
+      const warningConfig = {
+        title: 'Delete Article',
+        text: 'Are you sure to delete Article?',
+      }
+      this.generateWarning(warningConfig)
     },
   },
 }
