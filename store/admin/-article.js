@@ -22,5 +22,8 @@ export default {
       }
       return await this.$apiCaller(apiCall)()
     },
+    async deleteArticle({ commit }, yechizi) {
+      await console.log(yechizi)
+    },
   },
 }
