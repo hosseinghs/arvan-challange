@@ -1,6 +1,9 @@
 <template>
-  <div class="_register_layout">
-    <Nuxt />
+  <div>
+    <LayoutLoading />
+    <div class="_register_layout">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
