@@ -5,8 +5,20 @@
     </div>
     <template #modal-footer>
       <div class="w-100" style="text-align: end">
-        <b-button variant="outline" class="px-3 border"> No </b-button>
-        <b-button variant="danger" class="px-4"> Yes </b-button>
+        <b-button
+          variant="outline"
+          class="px-3 border"
+          @click.stop="warningState(false)"
+        >
+          No
+        </b-button>
+        <b-button
+          variant="danger"
+          class="px-4"
+          @click.stop="$emit('submitBtnClicked')"
+        >
+          Yes
+        </b-button>
       </div>
     </template>
   </b-modal>
