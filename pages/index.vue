@@ -9,7 +9,7 @@
             type="text"
             err-msg="Required field"
             required
-            @change="setUserData({ k: 'user', v: $event })"
+            @change="setUserData({ k: 'username', v: $event })"
           />
         </b-card-text>
 
