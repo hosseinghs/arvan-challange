@@ -53,13 +53,13 @@ export default {
     ...mapActions('register', [
       'setUserData',
       'clearUserState',
-      'registerUser',
+      'login',
     ]),
     resetForm() {
       console.log('reset')
     },
     submitForm() {
-      this.registerUser()
+      this.login()
     },
   },
 }
