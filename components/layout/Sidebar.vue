@@ -6,14 +6,13 @@
       </div>
       <div>
         <ul class="m-0 p-0">
-          <NuxtLink to="/admin/articles">
+          <NuxtLink
+            v-for="{ id, route, name } in navigationItems"
+            :key="id"
+            :to="`/${route}`"
+          >
             <li>
-              <span>All Articles</span>
-            </li>
-          </NuxtLink>
-          <NuxtLink to="/admin/article/create">
-            <li>
-              <span>New Article</span>
+              <span>{{ name }}</span>
             </li>
           </NuxtLink>
         </ul>
@@ -23,8 +22,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'SidebarComponent',
+  computed: {
+    ...mapState(['navigationItems']),
+  },
 }
 </script>
 
