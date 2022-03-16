@@ -3,6 +3,18 @@ export default {
 
   state: () => ({
     isModalVisible: false,
+    navigationItems: [
+      {
+        id: 1,
+        name: 'All Articles',
+        route: '',
+      },
+      {
+        id: 2,
+        name: 'New Article',
+        route: '/create',
+      },
+    ],
   }),
 
   mutations: {
