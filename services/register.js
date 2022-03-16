@@ -5,5 +5,5 @@ export function registerUserApi(api, user) {
 }
 
 export function loginApi(api, user) {
-  return api.$post(baseURL + '/login', { user })
+  return api.post(baseURL + '/login', { user })
 }
