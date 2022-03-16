@@ -9,3 +9,9 @@ export function createObjWithDefaultValues(self, defaults, options) {
     self[k] = res[k]
   })
 }
+
+export function deleteKeyFromObj(obj, ...keys) {
+  keys.forEach((k) => {
+    delete obj[k]
+  })
+}
