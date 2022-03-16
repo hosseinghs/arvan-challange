@@ -1,6 +1,6 @@
 import { createObjWithDefaultValues } from '~/utils/general'
 
-export class User {
+export class Article {
   constructor(options) {
     const defaults = {
       title: null,
