@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="11" md="6" lg="3">
+  <b-col cols="11" md="6" lg="4" xl="3">
     <b-card class="_register_wrapper">
       <b-card-title class="card-title"> Register </b-card-title>
       <b-form @submit.prevent="submitForm()" @reset="resetForm()">
