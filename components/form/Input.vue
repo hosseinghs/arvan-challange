@@ -9,6 +9,7 @@
       class="form-control"
       :type="type"
       :required="required"
+      :value="v"
       v-on="$listeners"
     />
   </b-form-group>
@@ -21,6 +22,11 @@ export default {
     label: {
       type: String,
       default: 'label',
+      required: false,
+    },
+    v: {
+      type: [String, Number],
+      default: null,
       required: false,
     },
     type: {
