@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <div class="px-5">
     <h1 class="mb-4">All Posts</h1>
     <div>
       <b-table
@@ -54,7 +54,7 @@
       />
     </div>
     <UiWarning @submitBtnClicked="deleteArticle()" />
-  </b-container>
+  </div>
 </template>
 
 <script>
