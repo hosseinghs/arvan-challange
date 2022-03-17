@@ -15,8 +15,8 @@ import storeModule from '~/store/admin/-article'
 export default {
   name: 'DefaultLayout',
   middleware({ store, redirect }) {
-    const userToken = localStorage.getItem('token')
-    if (!userToken) redirect('/')
+    const userToken = localStorage.getItem('authorization')
+    if (!userToken) redirect('/login')
     store.dispatch('register/setIsLoggedInState', !!userToken)
   },
   beforeCreate() {
