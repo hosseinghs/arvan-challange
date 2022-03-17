@@ -53,7 +53,8 @@ export default {
         if (status === 200) {
           dispatch('setIsLoggedInState', true)
           localStorage.setItem('authorization', data.user.token)
-          localStorage.setItem('admin', data.user.name)
+          localStorage.setItem('admin', data.user.username)
+          return true
         }
       }
       return await this.$apiCaller(apiCall)()
