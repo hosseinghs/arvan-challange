@@ -50,16 +50,13 @@ export default {
     this.clearUserState()
   },
   methods: {
-    ...mapActions('register', [
-      'setUserData',
-      'clearUserState',
-      'login',
-    ]),
+    ...mapActions('register', ['setUserData', 'clearUserState', 'login']),
     resetForm() {
       console.log('reset')
     },
     submitForm() {
       this.login()
+      this.$router.push({ path: '/admin/articles' })
     },
   },
 }
