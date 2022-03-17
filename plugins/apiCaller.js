@@ -83,7 +83,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
 
   api.onRequest((req) => {
     const userToken = window.localStorage.getItem('authorization')
-    if (userToken) req.headers.authorization = `bearer ${JSON.parse(userToken)}`
+    if (userToken) req.headers.authorization = `Token ${userToken}`
   })
   api.onResponseError((err) => {
     if (err) {
