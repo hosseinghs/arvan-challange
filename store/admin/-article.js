@@ -41,7 +41,7 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async deleteArticle({ commit }, articleId) {
+    async deleteArticle({ commit }, articleIdyar) {
       async function apiCall(api) {
         console.log(await deleteArticleApi(api, articleId))
       }
