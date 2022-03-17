@@ -2,7 +2,6 @@
   <div>
     <LayoutLoading />
     <LayoutAlert />
-
     <div class="_register_layout">
       <Nuxt />
     </div>

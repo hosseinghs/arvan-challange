@@ -3,10 +3,14 @@
     <LayoutHeader />
     <LayoutLoading />
     <LayoutAlert />
-    <LayoutSidebar />
-    <div class="_default_layout">
-      <Nuxt />
-    </div>
+    <b-row class="mt-0">
+      <b-col cols="2">
+        <LayoutSidebar />
+      </b-col>
+      <b-col cols="10">
+        <Nuxt />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -28,10 +32,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-._default_layout {
-  width: 100%;
-  height: 100vh;
-}
-</style>
