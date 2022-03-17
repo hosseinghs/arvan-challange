@@ -4,10 +4,10 @@
     <LayoutLoading />
     <LayoutAlert />
     <b-row class="mt-0">
-      <b-col cols="2">
+      <b-col cols="1" lg="2">
         <LayoutSidebar />
       </b-col>
-      <b-col cols="10">
+      <b-col cols="11" lg="10">
         <Nuxt />
       </b-col>
     </b-row>
