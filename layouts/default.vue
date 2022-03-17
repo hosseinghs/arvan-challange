@@ -14,6 +14,11 @@
 import storeModule from '~/store/admin/-article'
 export default {
   name: 'DefaultLayout',
+  middleware({ store, redirect }) {
+    const userToken = localStorage.getItem('token')
+    if (!userToken) redirect('/')
+    store.dispatch('register/setIsLoggedInState', !!userToken)
+  },
   beforeCreate() {
     if (!this.$store.hasModule('articleManagement'))
       this.$store.registerModule('articleManagement', storeModule)
