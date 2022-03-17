@@ -1,6 +1,6 @@
 export default {
+  ssr: false,
   head: {
-    ssr: false,
     title: 'arvan-challange',
     htmlAttrs: {
       lang: 'en',
@@ -13,12 +13,11 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  // css: ['~/assets/main.scss'],
 
   env: {
     baseURL: 'https://api.realworld.io/api',
   },
-  
-  // css: ['~/assets/css/main.scss'],
 
   plugins: ['~/plugins/apiCaller.js'],
 

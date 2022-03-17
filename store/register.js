@@ -51,9 +51,9 @@ export default {
       async function apiCall(api) {
         const { data, status } = await loginApi(api, user)
         if (status === 200) {
-          dispatch('setIsLoggedInState', true)
           localStorage.setItem('authorization', data.user.token)
           localStorage.setItem('admin', data.user.username)
+          dispatch('setIsLoggedInState', true)
           return true
         }
       }
