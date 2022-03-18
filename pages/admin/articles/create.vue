@@ -64,9 +64,11 @@ export default {
       'getTags',
       'createArticle',
       'setArticleData',
+      'editArticle',
     ]),
     submitForm() {
-      this.createArticle()
+      const isEdit = this.$route.params.isEdit
+      isEdit ? this.editArticle() : this.createArticle()
     },
   },
 }
