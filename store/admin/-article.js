@@ -70,18 +70,18 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async editArticle({ state, commit }) {
+    async editArticle({ state }) {
       const article = state.article
       async function apiCall(api) {
-        console.log(await editArticleApi(api, article))
+        await editArticleApi(api, article)
       }
       return await this.$apiCaller(apiCall)()
     },
 
-    async createArticle({ state, commit }) {
+    async createArticle({ state }) {
       const article = state.article
       async function apiCall(api) {
-        console.log(await createArticleApi(api, article))
+        await createArticleApi(api, article)
       }
       return await this.$apiCaller(apiCall)()
     },
