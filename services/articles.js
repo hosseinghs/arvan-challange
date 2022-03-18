@@ -1,7 +1,7 @@
 const baseURL = 'articles'
 
-export function getArticlesApi(api) {
-  return api.get(baseURL)
+export function getArticlesApi(api, pageNumber = 0) {
+  return api.get(`${baseURL}?offset=${pageNumber}`)
 }
 
 export function createArticleApi(api, article) {
@@ -9,7 +9,7 @@ export function createArticleApi(api, article) {
 }
 
 export function editArticleApi(api, { id, article }) {
-  return api.put(baseURL + `/${id}`, {article})
+  return api.put(baseURL + `/${id}`, { article })
 }
 
 export function deleteArticleApi(api, id) {
