@@ -13,7 +13,8 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  // css: ['~/assets/main.scss'],
+  
+  css: ['~/assets/css/main.scss'],
 
   env: {
     baseURL: 'https://api.realworld.io/api',
