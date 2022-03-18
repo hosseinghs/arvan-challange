@@ -25,9 +25,17 @@
       <b-col cols="12" lg="3">
         <FormInput type="text" label="Tags" />
         <div class="tag-list">
-          <b-form-checkbox-group v-model="tags" label="Using options array:">
-            <b-form-checkbox value="accepted">
-              I accept the terms and use
+          <b-form-checkbox-group
+            :value="article.tagList"
+            @change="setArticleData({ k: 'tagList', v: $event })"
+          >
+            <b-form-checkbox
+              v-for="(tag, i) in tags"
+              :key="i"
+              :value="tag"
+              class="d-block"
+            >
+              {{ tag }}
             </b-form-checkbox>
           </b-form-checkbox-group>
         </div>
@@ -42,14 +50,24 @@ export default {
   name: 'AddOrEditArticlePage',
   data() {
     return {
-      tags: [],
+      tagsList: [],
     }
   },
   computed: {
-    ...mapState('articleManagement', ['article']),
+    ...mapState('articleManagement', ['article', 'tags']),
+  },
+  created() {
+    this.getTags()
   },
   methods: {
-    ...mapActions('articleManagement', ['setArticleData', 'createArticle']),
+    ...mapActions('articleManagement', [
+      'getTags',
+      'createArticle',
+      'setArticleData',
+    ]),
+    log(i) {
+      console.log(i)
+    },
     submitForm() {
       this.createArticle()
     },
