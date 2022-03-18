@@ -23,7 +23,7 @@
         <b-btn type="submit" variant="primary">Submit</b-btn>
       </b-col>
       <b-col cols="12" lg="3">
-        <FormInput type="text" label="Tags" />
+        <FormInput placeholder="New Tag" type="text" label="Tags" />
         <div class="tag-list">
           <b-form-checkbox-group
             :value="article.tagList"
