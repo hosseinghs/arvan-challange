@@ -55,7 +55,7 @@
           :per-page="queries.limit"
           align="center"
           @change="getData($event)"
-        ></b-pagination>
+        />
       </div>
     </div>
     <UiWarning @submitBtnClicked="fireDeleteArticleAction(selectedArticle)" />
@@ -87,7 +87,6 @@ export default {
         {
           key: 'createdAt',
         },
-
         {
           value: ' ',
           key: 'actions',
@@ -115,7 +114,10 @@ export default {
     editPost(article) {
       if (!article) return null
       this.setEditingArticle(article)
-      this.$router.push('/admin/articles/create')
+      this.$router.push({
+        path: '/admin/articles/create',
+        params: { isEdit: true },
+      })
     },
     generateWarningConfig(item) {
       if (!item) return null
