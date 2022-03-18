@@ -4,14 +4,16 @@ import {
   editArticleApi,
   createArticleApi,
 } from '~/services/articles'
+import { getTagsApi } from '~/services/tags'
 import { Article } from '~/models/article'
-
+import { addToArr } from '~/utils/general'
 export default {
   namespaced: true,
 
   state: () => ({
     articles: {},
     article: new Article(),
+    tags: [],
   }),
 
   mutations: {
@@ -26,6 +28,11 @@ export default {
       const doomedObj = arr.find((obj) => obj.slug === slug)
       const doomedObjIndex = arr.indexOf(doomedObj)
       arr.splice(doomedObjIndex, 1)
+    },
+    SET_TAGS(state, tags) {
+      const list = state.tags
+      list.splice(0)
+      addToArr(list, tags)
     },
   },
 
@@ -67,6 +74,15 @@ export default {
       const article = state.article
       async function apiCall(api) {
         console.log(await createArticleApi(api, article))
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async getTags({ commit }) {
+      async function apiCall(api) {
+        const { status, data } = await getTagsApi(api)
+        if (status === 200) commit('SET_TAGS', data.tags)
+        return true
       }
       return await this.$apiCaller(apiCall)()
     },
