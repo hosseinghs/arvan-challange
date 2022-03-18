@@ -8,6 +8,7 @@
     <b-form-input
       class="form-control"
       :type="type"
+      :placeholder="placeholder"
       :required="required"
       :state="validState"
       :value="v"
@@ -38,6 +39,10 @@ export default {
       type: String,
       default: '',
       required: true,
+    },
+    placeholder: {
+      type: String,
+      default: '',
     },
     errMsg: {
       type: String,
