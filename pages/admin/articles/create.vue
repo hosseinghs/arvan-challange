@@ -48,11 +48,6 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'AddOrEditArticlePage',
-  data() {
-    return {
-      tagsList: [],
-    }
-  },
   computed: {
     ...mapState('articleManagement', ['article', 'tags']),
   },
