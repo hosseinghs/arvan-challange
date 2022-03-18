@@ -25,6 +25,9 @@ export default {
     SET_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
+    SET_EDITING_ARTICLE(state, editingArticle) {
+      state.article = editingArticle
+    },
     DELETE_ARTICLE_FROM_THE_LIST(state, slug) {
       const arr = state.articles.articles
       const doomedObj = arr.find((obj) => obj.slug === slug)
@@ -43,6 +46,9 @@ export default {
       commit('SET_ARTICLE_DATA', { k, v })
     },
 
+    setEditingArticle({ commit }, editingArticle) {
+      commit('SET_EDITING_ARTICLE', editingArticle)
+    },
     /* -------------------------------------------------------------------------- */
     /*                                  api calls                                 */
     /* -------------------------------------------------------------------------- */
