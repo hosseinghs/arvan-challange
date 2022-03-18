@@ -2,7 +2,14 @@
   <div class="px-4">
     <h1 class="mb-4">All Posts</h1>
     <div>
-      <b-table hover striped :fields="fields" :items="articles.articles">
+      <b-table
+        hover
+        striped
+        :fields="fields"
+        :items="articles.articles"
+        :current-page="queries.offset"
+        :per-page="queries.limit"
+      >
         /*
         --------------------------------------------------------------------------
         */ /* customize table celss */ /*
@@ -40,11 +47,16 @@
           </b-button-group>
         </template>
       </b-table>
-      <!-- <b-pagination
-        v-model="queries.currentPage"
-        :total-rows="articles.articlesCount"
-        :per-page="queries.perPage"
-      /> -->
+
+      <div class="mt-3">
+        <b-pagination
+          v-model="queries.offset"
+          :total-rows="articles.articlesCount"
+          :per-page="queries.limit"
+          align="center"
+          @change="getData($event)"
+        ></b-pagination>
+      </div>
     </div>
     <UiWarning @submitBtnClicked="fireDeleteArticleAction(selectedArticle)" />
   </div>
@@ -52,6 +64,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Queries } from '~/models/queries'
 export default {
   name: 'ArticlePage',
   data() {
@@ -80,18 +93,15 @@ export default {
           key: 'actions',
         },
       ],
-      queries: {
-        perPage: 10,
-        currentPage: 1,
-      },
       selectedArticle: false,
+      queries: new Queries(),
     }
   },
   computed: {
     ...mapState('articleManagement', ['articles']),
   },
   created() {
-    this.getArticles()
+    this.getData()
   },
 
   methods: {
@@ -99,11 +109,13 @@ export default {
     ...mapActions('articleManagement', [
       'getArticles',
       'deleteArticle',
-      'setQueries',
+      'setArticleData',
+      'setEditingArticle',
     ]),
-    editPost(item) {
-      if (!item) return null
-      console.log(item)
+    editPost(article) {
+      if (!article) return null
+      this.setEditingArticle(article)
+      this.$router.push('/admin/articles/create')
     },
     generateWarningConfig(item) {
       if (!item) return null
@@ -114,6 +126,10 @@ export default {
       }
       this.generateWarning(warningConfig)
     },
+    getData(pageNumber = 0) {
+      if (pageNumber === 0) this.getArticles(pageNumber)
+      else this.getArticles(--pageNumber)
+    },
     async fireDeleteArticleAction(article) {
       const res = await this.deleteArticle(article.slug)
       if (res) this.setWarningState(false)
@@ -121,5 +137,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
