@@ -37,6 +37,9 @@ export default {
       list.splice(0)
       addToArr(list, tags)
     },
+    ADD_NEW_TAG_TO_THE_LIST(state, newTag) {
+      state.tags.push(newTag)
+    },
   },
 
   actions: {
@@ -47,6 +50,11 @@ export default {
     setEditingArticle({ commit }, editingArticle) {
       commit('SET_EDITING_ARTICLE', editingArticle)
     },
+
+    addNewTagToTheList({ commit }, newTag) {
+      commit('ADD_NEW_TAG_TO_THE_LIST', newTag)
+    },
+
     /* -------------------------------------------------------------------------- */
     /*                                  api calls                                 */
     /* -------------------------------------------------------------------------- */

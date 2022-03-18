@@ -1,31 +1,39 @@
 <template>
-  <b-form @submit.prevent="submitForm()">
+  <div>
     <b-row>
       <b-col cols="12" lg="9">
-        <FormInput
-          label="Title"
-          type="text"
-          err-msg="Required field"
-          :v="article.title"
-          :valid-state="isTitleValid"
-          @change="setArticleData({ k: 'title', v: $event })"
-        />
-        <FormInput
-          label="Description"
-          type="text"
-          :v="article.description"
-          @change="setArticleData({ k: 'description', v: $event })"
-        />
-        <FormInput
-          label="Body"
-          type="text"
-          :v="article.body"
-          @change="setArticleData({ k: 'body', v: $event })"
-        />
-        <b-btn type="submit" variant="primary">Submit</b-btn>
+        <b-form @submit.prevent="submitForm()">
+          <FormInput
+            label="Title"
+            type="text"
+            err-msg="Required field"
+            :v="article.title"
+            :valid-state="isTitleValid"
+            @change="setArticleData({ k: 'title', v: $event })"
+          />
+          <FormInput
+            label="Description"
+            type="text"
+            :v="article.description"
+            @change="setArticleData({ k: 'description', v: $event })"
+          />
+          <FormInput
+            label="Body"
+            type="text"
+            :v="article.body"
+            @change="setArticleData({ k: 'body', v: $event })"
+          />
+          <b-btn type="submit" variant="primary">Submit</b-btn>
+        </b-form>
       </b-col>
       <b-col cols="12" lg="3">
-        <FormInput placeholder="New Tag" type="text" label="Tags" />
+        <FormInput
+          v-model="newTag"
+          placeholder="New Tag"
+          type="text"
+          label="Tags"
+          @keypress.enter="addNewTagToTheList(newTag)"
+        />
         <div class="tag-list">
           <b-form-checkbox-group
             :value="article.tagList"
@@ -43,13 +51,18 @@
         </div>
       </b-col>
     </b-row>
-  </b-form>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'AddOrEditArticlePage',
+  data() {
+    return {
+      newTag: null,
+    }
+  },
   computed: {
     ...mapState('articleManagement', ['article', 'tags']),
     isTitleValid: {
@@ -67,9 +80,10 @@ export default {
   methods: {
     ...mapActions('articleManagement', [
       'getTags',
+      'editArticle',
       'createArticle',
       'setArticleData',
-      'editArticle',
+      'addNewTagToTheList',
     ]),
     submitForm() {
       const isEdit = this.$route.params.isEdit
