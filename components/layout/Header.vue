@@ -1,8 +1,8 @@
 <template>
   <div class="my-header">
     <b-navbar toggleable="lg" type="dark">
-      <b-navbar-brand href="#">Arvan Challange</b-navbar-brand>
-      <span style="color: #fff"> Welcome hossein </span>
+      <b-navbar-brand>Arvan Challange</b-navbar-brand>
+      <span style="color: #fff"> {{ userName }} </span>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <button class="btn">Logout</button>
@@ -15,6 +15,12 @@
 <script>
 export default {
   name: 'HeaderComponent',
+  computed: {
+    userName() {
+      const username = localStorage.getItem('admin')
+      return username || 'Admin'
+    },
+  },
 }
 </script>
 
