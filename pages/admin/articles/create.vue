@@ -5,7 +5,9 @@
         <FormInput
           label="Title"
           type="text"
+          err-msg="Required field"
           :v="article.title"
+          :valid-state="isTitleValid"
           @change="setArticleData({ k: 'title', v: $event })"
         />
         <FormInput
@@ -50,6 +52,14 @@ export default {
   name: 'AddOrEditArticlePage',
   computed: {
     ...mapState('articleManagement', ['article', 'tags']),
+    isTitleValid: {
+      get() {
+        return this.article.title
+      },
+      set(val) {
+        return this.setArticleData({ k: 'title', v: val })
+      },
+    },
   },
   created() {
     this.getTags()
@@ -63,7 +73,8 @@ export default {
     ]),
     submitForm() {
       const isEdit = this.$route.params.isEdit
-      isEdit ? this.editArticle() : this.createArticle()
+      if (this.isTitleValid) isEdit ? this.editArticle() : this.createArticle()
+      else this.isTitleValid = false
     },
   },
 }
