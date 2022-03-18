@@ -2,14 +2,7 @@
   <div class="px-4">
     <h1 class="mb-4">All Posts</h1>
     <div>
-      <b-table
-        v-model="queries.currentPage"
-        hover
-        striped
-        :fields="fields"
-        :items="articles.articles"
-        :per-page="queries.perPage"
-      >
+      <b-table hover striped :fields="fields" :items="articles.articles">
         /*
         --------------------------------------------------------------------------
         */ /* customize table celss */ /*
@@ -47,13 +40,13 @@
           </b-button-group>
         </template>
       </b-table>
-      <b-pagination
+      <!-- <b-pagination
         v-model="queries.currentPage"
         :total-rows="articles.articlesCount"
         :per-page="queries.perPage"
-      />
+      /> -->
     </div>
-    <UiWarning @submitBtnClicked="deleteArticle()" />
+    <UiWarning @submitBtnClicked="fireDeleteArticleAction(selectedArticle)" />
   </div>
 </template>
 
@@ -91,6 +84,7 @@ export default {
         perPage: 10,
         currentPage: 1,
       },
+      selectedArticle: false,
     }
   },
   computed: {
@@ -101,19 +95,28 @@ export default {
   },
 
   methods: {
-    ...mapActions('warningGenerator', ['generateWarning']),
-    ...mapActions('articleManagement', ['getArticles', 'deleteArticle']),
+    ...mapActions('warningGenerator', ['generateWarning', 'setWarningState']),
+    ...mapActions('articleManagement', [
+      'getArticles',
+      'deleteArticle',
+      'setQueries',
+    ]),
     editPost(item) {
       if (!item) return null
       console.log(item)
     },
     generateWarningConfig(item) {
       if (!item) return null
+      this.selectedArticle = item
       const warningConfig = {
         title: 'Delete Article',
         text: 'Are you sure to delete Article?',
       }
       this.generateWarning(warningConfig)
+    },
+    async fireDeleteArticleAction(article) {
+      const res = await this.deleteArticle(article.slug)
+      if (res) this.setWarningState(false)
     },
   },
 }
