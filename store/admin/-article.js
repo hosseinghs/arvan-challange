@@ -7,7 +7,7 @@ import {
 
 import { getTagsApi } from '~/services/tags'
 import { Article } from '~/models/article'
-import { addToArr } from '~/utils/general'
+import { addToArr, deleteObjFromArr } from '~/utils/general'
 
 export default {
   namespaced: true,
@@ -30,9 +30,7 @@ export default {
     },
     DELETE_ARTICLE_FROM_THE_LIST(state, slug) {
       const arr = state.articles.articles
-      const doomedObj = arr.find((obj) => obj.slug === slug)
-      const doomedObjIndex = arr.indexOf(doomedObj)
-      arr.splice(doomedObjIndex, 1)
+      deleteObjFromArr(arr, 'slug', slug)
     },
     SET_TAGS(state, tags) {
       const list = state.tags

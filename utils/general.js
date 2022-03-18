@@ -16,9 +16,9 @@ export function deleteKeyFromObj(obj, ...keys) {
   })
 }
 
-export function deleteObjFromArr(arr, id) {
+export function deleteObjFromArr(arr, param, id) {
   if (Array.isArray(arr)) {
-    const doomedObj = arr.find((obj) => obj.id === id)
+    const doomedObj = arr.find((obj) => obj[param] === id)
     const doomedObjIndex = arr.indexOf(doomedObj)
     arr.splice(doomedObjIndex, 1)
   }
