@@ -115,7 +115,7 @@ export default {
       if (!article) return null
       this.setEditingArticle(article)
       this.$router.push({
-        path: '/admin/articles/create',
+        name: 'admin-articles-create',
         params: { isEdit: true },
       })
     },
