@@ -4,23 +4,26 @@
       <b-col cols="12" lg="9">
         <FormInput
           label="Title"
+          type="text"
           :v="article.title"
           @change="setArticleData({ k: 'title', v: $event })"
         />
         <FormInput
           label="Description"
+          type="text"
           :v="article.description"
           @change="setArticleData({ k: 'description', v: $event })"
         />
         <FormInput
           label="Body"
+          type="text"
           :v="article.body"
           @change="setArticleData({ k: 'body', v: $event })"
         />
         <b-btn type="submit" variant="primary">Submit</b-btn>
       </b-col>
       <b-col cols="12" lg="3">
-        <FormInput label="Tags" />
+        <FormInput type="text" label="Tags" />
         <div class="tag-list">
           <b-form-checkbox-group v-model="tags" label="Using options array:">
             <b-form-checkbox value="accepted">
