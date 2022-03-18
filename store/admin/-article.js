@@ -4,9 +4,12 @@ import {
   editArticleApi,
   createArticleApi,
 } from '~/services/articles'
+
 import { getTagsApi } from '~/services/tags'
 import { Article } from '~/models/article'
+import { Queries } from '~/models/queires'
 import { addToArr } from '~/utils/general'
+
 export default {
   namespaced: true,
 
@@ -14,6 +17,7 @@ export default {
     articles: {},
     article: new Article(),
     tags: [],
+    queires: new Queries(),
   }),
 
   mutations: {
@@ -34,6 +38,9 @@ export default {
       list.splice(0)
       addToArr(list, tags)
     },
+    SET_QUERIES(state, { k, v }) {
+      state.queires[k] = v
+    },
   },
 
   actions: {
@@ -41,6 +48,9 @@ export default {
       commit('SET_ARTICLE_DATA', { k, v })
     },
 
+    setQueries({ commit }, { k, v }) {
+      commit('SET_QUERIES', { k, v })
+    },
     /* -------------------------------------------------------------------------- */
     /*                                  api calls                                 */
     /* -------------------------------------------------------------------------- */
