@@ -9,6 +9,7 @@
       class="form-control"
       :type="type"
       :required="required"
+      :state="validState"
       :value="v"
       v-on="$listeners"
     />
@@ -28,6 +29,10 @@ export default {
       type: [String, Number],
       default: null,
       required: false,
+    },
+    validState: {
+      type: Boolean,
+      default: null,
     },
     type: {
       type: String,
