@@ -2,13 +2,13 @@
   <b-col cols="11" md="6" lg="4" xl="3">
     <b-card class="_register_wrapper">
       <b-card-title class="card-title"> Login </b-card-title>
-      <b-form @submit.prevent="submitForm()" @reset="resetForm()">
+      <b-form @submit.prevent="submitForm()">
         <b-card-text>
           <FormInput
             label="Email"
             type="email"
             err-msg="Required field"
-            required
+            :valid-state="isEmailValid"
             @change="setUserData({ k: 'email', v: $event })"
           />
         </b-card-text>
@@ -18,7 +18,7 @@
             label="Password"
             type="password"
             err-msg="Required field"
-            required
+            :valid-state="isPasswordValid"
             @change="setUserData({ k: 'password', v: $event })"
           />
         </b-card-text>
@@ -45,18 +45,38 @@ export default {
   layout: 'register',
   computed: {
     ...mapState('register', ['user']),
+    isEmailValid: {
+      get() {
+        if (this.user.email !== null) return !!this.user.email
+        else return null
+      },
+      set(val) {
+        this.setUserData({ k: 'email', v: val })
+      },
+    },
+    isPasswordValid: {
+      get() {
+        if (this.user.password !== null) return !!this.user.password
+        else return null
+      },
+      set(val) {
+        this.setUserData({ k: 'password', v: val })
+      },
+    },
   },
   beforeDestroy() {
     this.clearUserState()
   },
   methods: {
     ...mapActions('register', ['setUserData', 'clearUserState', 'login']),
-    resetForm() {
-      console.log('reset')
-    },
     submitForm() {
-      this.login()
-      this.$router.push({ path: '/admin/articles' })
+      if (this.isEmailValid && this.isPasswordValid) {
+        this.login()
+        this.$router.push({ path: '/admin/articles' })
+      } else {
+        this.isEmailValid = false
+        this.isPasswordValid = false
+      }
     },
   },
 }
