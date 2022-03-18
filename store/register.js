@@ -1,5 +1,6 @@
 import { User } from '~/models/user'
 import { registerUserApi, loginApi } from '~/services/register'
+import { deleteKeyFromObj } from '~/utils/general'
 export default {
   namespaced: true,
 
@@ -41,13 +42,14 @@ export default {
     async registerUser({ state }) {
       const newUser = state.user
       async function apiCall(api) {
-        console.log(await registerUserApi(api, newUser))
+        await registerUserApi(api, newUser)
       }
       return await this.$apiCaller(apiCall)()
     },
 
     async login({ state, dispatch }) {
       const user = state.user
+      deleteKeyFromObj(user, 'username')
       async function apiCall(api) {
         const { data, status } = await loginApi(api, user)
         if (status === 200) {

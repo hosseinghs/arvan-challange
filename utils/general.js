@@ -12,8 +12,8 @@ export function createObjWithDefaultValues(self, defaults, options) {
 
 export function deleteKeyFromObj(obj, ...keys) {
   keys.forEach((k) => {
-    delete obj[k]
-  })
+    delete obj[k];
+  });
 }
 
 export function deleteObjFromArr(arr, param, id) {
