@@ -65,9 +65,6 @@ export default {
       'createArticle',
       'setArticleData',
     ]),
-    log(i) {
-      console.log(i)
-    },
     submitForm() {
       this.createArticle()
     },
