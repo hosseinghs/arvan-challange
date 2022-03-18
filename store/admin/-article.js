@@ -1,4 +1,3 @@
-// import { addToArr } from '~/utils/general'
 import {
   getArticlesApi,
   deleteArticleApi,
@@ -22,6 +21,12 @@ export default {
     SET_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
+    DELETE_ARTICLE_FROM_THE_LIST(state, slug) {
+      const arr = state.articles.articles
+      const doomedObj = arr.find((obj) => obj.slug === slug)
+      const doomedObjIndex = arr.indexOf(doomedObj)
+      arr.splice(doomedObjIndex, 1)
+    },
   },
 
   actions: {
@@ -41,9 +46,11 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async deleteArticle({ commit }, articleId) {
+    async deleteArticle({ commit }, slug) {
       async function apiCall(api) {
-        console.log(await deleteArticleApi(api, articleId))
+        const { status } = await deleteArticleApi(api, slug)
+        if (status === 204) commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
+        return true
       }
       return await this.$apiCaller(apiCall)()
     },
