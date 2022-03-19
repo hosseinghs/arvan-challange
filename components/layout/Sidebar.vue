@@ -1,8 +1,6 @@
 <template>
   <div class="custom-sidebar">
-    <div class="p-3">
-      <h4 id="sidebar-no-header-title">Post</h4>
-    </div>
+    <h4 class="my-3 mx-4">Post</h4>
     <div>
       <ul class="m-0 p-0">
         <a
