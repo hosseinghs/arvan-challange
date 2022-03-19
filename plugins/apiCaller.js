@@ -31,33 +31,6 @@ export default function ({ $axios, store, env, redirect }, inject) {
           commit('SET_IS_VISIBLE', false)
         }, timer)
       },
-      disable({ commit }) {
-        commit('SET_IS_VISIBLE', false)
-      },
-      showSuccess({ dispatch }, { title, timer }) {
-        title = title || 'عملیات با موفقیت انجام شد'
-        timer = timer === undefined ? 5000 : timer
-        dispatch('notify', {
-          config: { color: 'success', title },
-          timer,
-        })
-      },
-      showError({ dispatch }, { title, timer }) {
-        title = title || 'خطایی رخ داده است. مجدد تلاش کنید.'
-        timer = timer === undefined ? 5000 : timer
-        dispatch('notify', {
-          config: { color: 'danger', title },
-          timer,
-        })
-      },
-      showInfo({ dispatch }, { title, timer }) {
-        title = title || 'متن پیام را وارد کنید'
-        timer = timer === undefined ? 5000 : timer
-        dispatch('notify', {
-          config: { color: 'info', title },
-          timer,
-        })
-      },
     },
   })
   store.registerModule('loading', {
