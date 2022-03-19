@@ -69,10 +69,10 @@ export default {
   },
   methods: {
     ...mapActions('register', ['setUserData', 'clearUserState', 'login']),
-    submitForm() {
+    async submitForm() {
       if (this.isEmailValid && this.isPasswordValid) {
-        this.login()
-        this.$router.push({ path: '/admin/articles' })
+        const res = await this.login()
+        if (res) this.$router.push({ path: '/admin/articles' })
       } else {
         this.isEmailValid = false
         this.isPasswordValid = false
