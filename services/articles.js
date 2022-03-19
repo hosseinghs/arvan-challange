@@ -1,7 +1,7 @@
 const baseURL = 'articles'
 
 export function getArticlesApi(api, pageNumber = 0) {
-  return api.get(`${baseURL}?offset=${pageNumber}?limit=10`)
+  return api.get(`${baseURL}?offset=${pageNumber}&&limit=10`)
 }
 
 export function createArticleApi(api, article) {
