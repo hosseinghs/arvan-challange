@@ -86,11 +86,15 @@ export default {
   created() {
     this.getTags()
   },
+  beforeDestroy() {
+    this.clearArticle()
+  },
   methods: {
     getArraysMutualObjects,
     ...mapActions('articleManagement', [
       'getTags',
       'editArticle',
+      'clearArticle',
       'createArticle',
       'setArticleData',
       'addNewTagToTheList',
