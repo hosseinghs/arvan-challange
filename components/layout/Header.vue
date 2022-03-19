@@ -5,7 +5,7 @@
       <span style="color: #fff"> {{ userName }} </span>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <button class="btn">Logout</button>
+          <button @click.stop="logout()" class="btn">Logout</button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -19,6 +19,13 @@ export default {
     userName() {
       const username = localStorage.getItem('admin')
       return username || 'Admin'
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('authorization')
+      localStorage.removeItem('admin')
+      this.$router.push({ path: '/' })
     },
   },
 }
