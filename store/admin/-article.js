@@ -40,6 +40,9 @@ export default {
     ADD_NEW_TAG_TO_THE_LIST(state, newTag) {
       state.tags.push(newTag)
     },
+    CLEAR_ARTICLE(state) {
+      state.article = new Article()
+    },
   },
 
   actions: {
@@ -53,6 +56,10 @@ export default {
 
     addNewTagToTheList({ commit }, newTag) {
       commit('ADD_NEW_TAG_TO_THE_LIST', newTag)
+    },
+
+    clearArticle({ commit }) {
+      commit('CLEAR_ARTICLE')
     },
 
     /* -------------------------------------------------------------------------- */
