@@ -12,8 +12,8 @@ export function createObjWithDefaultValues(self, defaults, options) {
 
 export function deleteKeyFromObj(obj, ...keys) {
   keys.forEach((k) => {
-    delete obj[k];
-  });
+    delete obj[k]
+  })
 }
 
 export function deleteObjFromArr(arr, param, id) {
@@ -22,4 +22,11 @@ export function deleteObjFromArr(arr, param, id) {
     const doomedObjIndex = arr.indexOf(doomedObj)
     arr.splice(doomedObjIndex, 1)
   }
+}
+
+export function getArraysMutualObjects(arr1, arr2) {
+  return arr1.filter(function (n) {
+    // eslint-disable-next-line unicorn/prefer-includes
+    return arr2.indexOf(n) !== -1
+  })
 }
