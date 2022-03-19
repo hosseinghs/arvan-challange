@@ -7,7 +7,7 @@
       <b-col cols="1" lg="2">
         <LayoutSidebar />
       </b-col>
-      <b-col cols="11" lg="10">
+      <b-col cols="11" lg="10" class="px-0">
         <Nuxt />
       </b-col>
     </b-row>
