@@ -39,6 +39,7 @@ export default {
     },
     ADD_NEW_TAG_TO_THE_LIST(state, newTag) {
       state.tags.push(newTag)
+      state.article.tagList.push(newTag)
     },
     CLEAR_ARTICLE(state) {
       state.article = new Article()

@@ -32,7 +32,7 @@
           placeholder="New Tag"
           type="text"
           label="Tags"
-          @keypress.enter="addNewTagToTheList(newTag)"
+          @keypress.enter="addNewTag(newTag)"
         />
         <div class="tag-list">
           <b-form-checkbox-group
@@ -103,6 +103,10 @@ export default {
       if (this.isTitleValid)
         this.isEdit ? this.editArticle() : this.createArticle()
       else this.isTitleValid = false
+    },
+    addNewTag(newTag) {
+      this.addNewTagToTheList(newTag)
+      this.newTag = ''
     },
   },
 }
