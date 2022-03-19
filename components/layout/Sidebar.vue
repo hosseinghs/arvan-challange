@@ -37,10 +37,13 @@ export default {
 
 <style scoped>
 .custom-sidebar {
-  top: 56px !important;
+  width: 100%;
+  position: fixed;
+  top: 56px;
+  left: 0;
   background-color: #1c7cd5 !important;
   color: #fff !important;
-  height: 100vh;
+  height: calc(100vh - 56px);
 }
 
 ul {
