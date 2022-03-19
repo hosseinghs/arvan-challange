@@ -3,7 +3,7 @@
     <LayoutHeader />
     <LayoutLoading />
     <LayoutAlert />
-    <b-row class="mt-0">
+    <b-row>
       <b-col cols="1" lg="2">
         <LayoutSidebar />
       </b-col>
