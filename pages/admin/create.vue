@@ -5,7 +5,6 @@
         <b-form @submit.prevent="submitForm()">
           <FormInput
             label="Title"
-            type="text"
             err-msg="Required field"
             :v="article.title"
             :valid-state="isTitleValid"
@@ -99,10 +98,13 @@ export default {
       'setArticleData',
       'addNewTagToTheList',
     ]),
-    submitForm() {
-      if (this.isTitleValid)
-        this.isEdit ? this.editArticle() : this.createArticle()
-      else this.isTitleValid = false
+    async submitForm() {
+      if (this.isTitleValid) {
+        const res = this.isEdit
+          ? await this.editArticle()
+          : await this.createArticle()
+        if (res) this.$router.push({ path: '/' })
+      } else this.isTitleValid = false
     },
     addNewTag(newTag) {
       this.addNewTagToTheList(newTag)
