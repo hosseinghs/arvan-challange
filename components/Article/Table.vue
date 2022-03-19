@@ -49,6 +49,7 @@
       </b-table>
 
       <div class="mt-3">
+        {{ page }}
         <b-pagination
           v-model="page"
           :total-rows="articles.articlesCount"
@@ -98,11 +99,14 @@ export default {
   },
   computed: {
     ...mapState('articleManagement', ['articles']),
-    page() {
-      if (this.$route.query.page) {
-        return this.$route.query.page
-      }
-      return 1
+    page: {
+      get() {
+        if (this.$route.query.page) return this.$route.query.page
+        return 1
+      },
+      set(val) {
+        return val
+      },
     },
   },
   watch: {
@@ -111,7 +115,7 @@ export default {
     },
   },
   created() {
-    const page = this.$route.query.page || 1
+    const page = this.page
     this.getData(page)
   },
   methods: {
