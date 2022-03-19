@@ -1,7 +1,7 @@
 const baseURL = 'users'
 
 export function registerUserApi(api, user) {
-  return api.$post(baseURL, { user })
+  return api.post(baseURL, { user })
 }
 
 export function loginApi(api, user) {
