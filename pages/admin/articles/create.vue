@@ -43,6 +43,11 @@
               v-for="(tag, i) in tags"
               :key="i"
               :value="tag"
+              :checked="
+                isEdit
+                  ? getArraysMutualObjects(tags, article.tagList)
+                  : article.tagList
+              "
               class="d-block"
             >
               {{ tag }}
@@ -56,6 +61,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { getArraysMutualObjects } from '~/utils/general'
 export default {
   name: 'AddOrEditArticlePage',
   data() {
@@ -73,11 +79,15 @@ export default {
         return this.setArticleData({ k: 'title', v: val })
       },
     },
+    isEdit() {
+      return this.$route.params.isEdit
+    },
   },
   created() {
     this.getTags()
   },
   methods: {
+    getArraysMutualObjects,
     ...mapActions('articleManagement', [
       'getTags',
       'editArticle',
@@ -86,8 +96,8 @@ export default {
       'addNewTagToTheList',
     ]),
     submitForm() {
-      const isEdit = this.$route.params.isEdit
-      if (this.isTitleValid) isEdit ? this.editArticle() : this.createArticle()
+      if (this.isTitleValid)
+        this.isEdit ? this.editArticle() : this.createArticle()
       else this.isTitleValid = false
     },
   },
