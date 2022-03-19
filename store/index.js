@@ -12,7 +12,7 @@ export default {
       {
         id: 2,
         name: 'New Article',
-        route: 'admin/articles/create',
+        route: 'admin/create',
       },
     ],
   }),
