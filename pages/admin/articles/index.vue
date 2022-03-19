@@ -4,6 +4,7 @@
     <div>
       <b-table
         hover
+        responsive
         striped
         :fields="fields"
         :items="articles.articles"
