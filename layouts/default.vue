@@ -7,7 +7,7 @@
       <b-col cols="1" lg="2" class="position-relative">
         <LayoutSidebar />
       </b-col>
-      <b-col cols="11" lg="10" class="content px-0">
+      <b-col cols="11" lg="10" class="content px-4">
         <Nuxt />
       </b-col>
     </b-row>
@@ -38,6 +38,6 @@ export default {
   background-color: #fff !important;
   margin-top: 5em;
   overflow-y: scroll;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 85px);
 }
 </style>
