@@ -3,10 +3,10 @@
     <LayoutHeader />
     <LayoutAlert />
     <b-row>
-      <b-col cols="1" lg="2" class="position-relative">
+      <b-col cols="2" class="position-relative">
         <LayoutSidebar />
       </b-col>
-      <b-col cols="11" lg="10" class="content px-4">
+      <b-col cols="10" class="content px-4">
         <LayoutLoading />
         <Nuxt />
       </b-col>
