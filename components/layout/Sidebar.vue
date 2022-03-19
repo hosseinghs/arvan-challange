@@ -5,15 +5,16 @@
     </div>
     <div>
       <ul class="m-0 p-0">
-        <NuxtLink
+        <a
           v-for="{ id, route, name } in navigationItems"
           :key="id"
-          :to="`/${route}`"
+          :class="isActive(route)"
+          @click.stop="$router.push({ path: `/${route}` })"
         >
           <li>
             <span>{{ name }}</span>
           </li>
-        </NuxtLink>
+        </a>
       </ul>
     </div>
   </div>
@@ -25,6 +26,11 @@ export default {
   name: 'SidebarComponent',
   computed: {
     ...mapState(['navigationItems']),
+  },
+  methods: {
+    isActive(route) {
+      return this.$route.path === `/${route}` ? 'on-hover' : ''
+    },
   },
 }
 </script>
@@ -48,17 +54,18 @@ ul > a {
   padding: 0.25em;
   color: #fff !important;
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 ul > a > li {
   margin: 0.5em 2em !important;
 }
 
-ul > a:hover {
+.on-hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.links {
-  cursor: pointer;
+ul > a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 </style>
