@@ -8,8 +8,7 @@
         striped
         :fields="fields"
         :items="articles.articles"
-        :current-page="page"
-        :per-page="queries.limit"
+        :per-page="10"
       >
         /*
         --------------------------------------------------------------------------
@@ -141,17 +140,15 @@ export default {
       this.generateWarning(warningConfig)
     },
     getData(currentPage) {
-      let page
-      if (typeof currentPage === 'number') {
-        page = currentPage
-      } else {
+      let page = null
+      if (typeof currentPage === 'number') page = currentPage
+      else {
         const currentRoute = this.$route
         if (currentRoute.query.page) page = +this.$route.query.page
         else page = 1
-
         this.currentPage = page
       }
-      const offset = page * 10
+      const offset = (page - 1) * 10
       if (currentPage === 1) this.$router.push({ path: '/admin/articles' })
       else if (currentPage && currentPage !== 1)
         this.$router.push({
