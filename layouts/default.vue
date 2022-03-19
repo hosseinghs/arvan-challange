@@ -4,7 +4,7 @@
     <LayoutLoading />
     <LayoutAlert />
     <b-row>
-      <b-col cols="1" lg="2">
+      <b-col cols="1" lg="2" class="position-relative">
         <LayoutSidebar />
       </b-col>
       <b-col cols="11" lg="10" class="content px-0">
