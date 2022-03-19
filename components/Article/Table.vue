@@ -49,7 +49,6 @@
       </b-table>
 
       <div class="mt-3">
-        {{ page }}
         <b-pagination
           v-model="page"
           :total-rows="articles.articlesCount"
