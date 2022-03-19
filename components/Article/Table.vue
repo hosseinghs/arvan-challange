@@ -8,7 +8,7 @@
         striped
         :fields="fields"
         :items="articles.articles"
-        :current-page="queries.offset"
+        :current-page="page"
         :per-page="queries.limit"
       >
         /*
@@ -51,9 +51,9 @@
 
       <div class="mt-3">
         <b-pagination
-          v-model="queries.offset"
+          v-model="page"
           :total-rows="articles.articlesCount"
-          :per-page="queries.limit"
+          :per-page="10"
           align="center"
           @change="getData($event)"
         />
@@ -107,8 +107,8 @@ export default {
     },
   },
   watch: {
-    page(val, old) {
-      if (val !== old) this.getData(+val)
+    page(val) {
+      if (val === 1) this.getData(+val)
     },
   },
   created() {
