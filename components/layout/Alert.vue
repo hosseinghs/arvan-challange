@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="12" md="5" xl="2" class="ml-auto mt-3 mr-3">
+  <b-col cols="12" md="5" xl="2" class="ml-auto mr-3">
     <b-alert fade dismissible :variant="notif.color" :show="isVisible">
       {{ notif.title }}
     </b-alert>
