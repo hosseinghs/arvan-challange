@@ -27,18 +27,18 @@ export default {
       required: false,
     },
     v: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: null,
       required: false,
     },
     validState: {
-      type: Boolean,
+      type: [Boolean, String],
       default: null,
     },
     type: {
       type: String,
-      default: '',
-      required: true,
+      default: 'text',
+      required: false,
     },
     placeholder: {
       type: String,
@@ -52,11 +52,6 @@ export default {
     required: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    inputVModel() {
-      return this.vModel
     },
   },
 }
