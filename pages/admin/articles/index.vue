@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4">
+  <div>
     <h1 class="mb-4">All Posts</h1>
     <div>
       <b-table
