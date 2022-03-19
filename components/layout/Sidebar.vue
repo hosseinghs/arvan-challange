@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <b-sidebar visible no-header>
-      <div class="p-3">
-        <h4 id="sidebar-no-header-title">Post</h4>
-      </div>
-      <div>
-        <ul class="m-0 p-0">
-          <NuxtLink
-            v-for="{ id, route, name } in navigationItems"
-            :key="id"
-            :to="`/${route}`"
-          >
-            <li>
-              <span>{{ name }}</span>
-            </li>
-          </NuxtLink>
-        </ul>
-      </div>
-    </b-sidebar>
+  <div class="custom-sidebar">
+    <div class="p-3">
+      <h4 id="sidebar-no-header-title">Post</h4>
+    </div>
+    <div>
+      <ul class="m-0 p-0">
+        <NuxtLink
+          v-for="{ id, route, name } in navigationItems"
+          :key="id"
+          :to="`/${route}`"
+        >
+          <li>
+            <span>{{ name }}</span>
+          </li>
+        </NuxtLink>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -32,10 +30,11 @@ export default {
 </script>
 
 <style scoped>
-::v-deep .b-sidebar {
+.custom-sidebar {
   top: 56px !important;
   background-color: #1c7cd5 !important;
   color: #fff !important;
+  height: 100vh;
 }
 
 ul {
