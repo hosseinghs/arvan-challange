@@ -99,12 +99,22 @@ export default {
   },
   computed: {
     ...mapState('articleManagement', ['articles']),
+    page() {
+      if (this.$route.query.page) {
+        return this.$route.query.page
+      }
+      return 1
+    },
+  },
+  watch: {
+    page(val, old) {
+      if (val !== old) this.getData(+val)
+    },
   },
   created() {
-    const page = this.$route.params.index || 1
+    const page = this.$route.query.page || 1
     this.getData(page)
   },
-
   methods: {
     ...mapActions('warningGenerator', ['generateWarning', 'setWarningState']),
     ...mapActions('articleManagement', [
@@ -130,14 +140,25 @@ export default {
       }
       this.generateWarning(warningConfig)
     },
-    getData(pageNumber) {
-      if (pageNumber === 1) this.$router.push({ path: '/admin/articles' })
-      else if (pageNumber && pageNumber !== 1)
+    getData(currentPage) {
+      let page
+      if (typeof currentPage === 'number') {
+        page = currentPage
+      } else {
+        const currentRoute = this.$route
+        if (currentRoute.query.page) page = +this.$route.query.page
+        else page = 1
+
+        this.currentPage = page
+      }
+      const offset = page * 10
+      if (currentPage === 1) this.$router.push({ path: '/admin/articles' })
+      else if (currentPage && currentPage !== 1)
         this.$router.push({
-          name: 'admin-articles-page',
-          params: { index: pageNumber },
+          path: '/admin/articles',
+          query: { page },
         })
-      this.getArticles()
+      this.getArticles(offset)
     },
     async fireDeleteArticleAction(article) {
       const res = await this.deleteArticle(article.slug)
