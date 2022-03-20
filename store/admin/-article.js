@@ -8,7 +8,7 @@ import {
 
 import { getTagsApi } from '~/services/tags'
 import { Article } from '~/models/article'
-import { addToArr, deleteObjFromArr } from '~/utils/general'
+import { addToArr, deleteObjFromArr, deleteKeyFromObj } from '~/utils/general'
 
 export default {
   namespaced: true,
@@ -94,6 +94,12 @@ export default {
 
     async editArticle({ state }) {
       const article = state.article
+      deleteKeyFromObj(article, 'author')
+      deleteKeyFromObj(article, 'favorited')
+      deleteKeyFromObj(article, 'createdAt')
+      deleteKeyFromObj(article, 'favoritesCount')
+      deleteKeyFromObj(article, 'favoritesCount')
+
       async function apiCall(api) {
         await editArticleApi(api, article)
       }
