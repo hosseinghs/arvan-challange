@@ -72,7 +72,7 @@ export default {
     async submitForm() {
       if (this.isEmailValid && this.isPasswordValid) {
         const res = await this.login()
-        if (res) this.$router.push({ path: '/admin/articles' })
+        if (res) this.$router.push({ path: '/article' })
       } else {
         this.isEmailValid = false
         this.isPasswordValid = false
