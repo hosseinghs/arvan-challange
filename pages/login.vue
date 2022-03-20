@@ -29,7 +29,7 @@
         <div class="mt-2">
           Don't have account?
           <NuxtLink to="/">
-            <strong> Register Now</strong>
+            <strong class="register-nuxt-link"> Register Now</strong>
           </NuxtLink>
         </div>
       </b-form>

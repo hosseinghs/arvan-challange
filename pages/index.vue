@@ -39,7 +39,7 @@
         <div class="mt-2">
           Already Registered?
           <NuxtLink to="/login">
-            <strong> Login</strong>
+            <strong class="register-nuxt-link"> Login</strong>
           </NuxtLink>
         </div>
       </b-form>
