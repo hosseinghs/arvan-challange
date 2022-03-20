@@ -128,6 +128,7 @@ export default {
       'setArticleData',
       'setEditingArticle',
     ]),
+    
     editPost(article) {
       if (!article) return null
       this.setEditingArticle(article)
@@ -136,6 +137,7 @@ export default {
         params: { slug: article.slug },
       })
     },
+
     generateWarningConfig(item) {
       if (!item) return null
       this.selectedArticle = item
@@ -145,8 +147,10 @@ export default {
       }
       this.generateWarning(warningConfig)
     },
+
     getData(currentPage) {
       let page = null
+
       if (typeof currentPage === 'number') page = currentPage
       else {
         const currentRoute = this.$route
@@ -154,19 +158,19 @@ export default {
         else page = 1
         this.currentPage = page
       }
+
       const offset = (page - 1) * 10
-      if (currentPage === 1) {
-        this.$router.push({ path: '/article' })
-      }
-      console.log(currentPage)
-      //  else if (currentPage && currentPage !== 1) {
-      //   this.$router.push({
-      //     name: `/article/page`,
-      //     params: { page },
-      //   })
-      // }
+
+      if (currentPage === 1) this.$router.push({ path: '/article' })
+      else if (currentPage && currentPage !== 1)
+        this.$router.push({
+          name: `article-page-page`,
+          params: { page },
+        })
+
       this.getArticles(offset)
     },
+
     async fireDeleteArticleAction(article) {
       const res = await this.deleteArticle(article.slug)
       if (res) this.setWarningState(false)
