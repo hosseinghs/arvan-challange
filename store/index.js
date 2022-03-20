@@ -6,13 +6,13 @@ export default {
     navigationItems: [
       {
         id: 1,
-        name: 'All Articles',
-        route: 'admin/articles',
+        name: 'article',
+        route: '/article',
       },
       {
         id: 2,
-        name: 'New Article',
-        route: 'admin/create',
+        name: 'new-article',
+        route: 'article/create',
       },
     ],
   }),
