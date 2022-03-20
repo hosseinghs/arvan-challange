@@ -84,6 +84,7 @@ export default {
     },
   },
   created() {
+    if (this.isEdit) this.getSingleArticleBySlug(this.isEdit)
     this.getTags()
   },
   beforeDestroy() {
@@ -98,6 +99,7 @@ export default {
       'createArticle',
       'setArticleData',
       'addNewTagToTheList',
+      'getSingleArticleBySlug',
     ]),
     async submitForm() {
       if (this.isTitleValid) {
