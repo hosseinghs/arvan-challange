@@ -2,7 +2,12 @@
   <div class="my-header">
     <b-navbar toggleable="lg" type="dark">
       <b-navbar-brand>Arvan Challange</b-navbar-brand>
-      <span style="color: #fff"> {{ userName }} </span>
+      <span style="color: #fff">
+        <div class="d-none d-lg-block">
+          {{ userName }}
+        </div>
+        <button class="btn d-lg-none" @click.stop="logout()">Logout</button>
+      </span>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <button class="btn" @click.stop="logout()">Logout</button>

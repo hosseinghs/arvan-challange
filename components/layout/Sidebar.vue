@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     isActive(route) {
-      return this.$route.path === `${route}` ? 'on-hover' : ''
+      return this.$route.path === ` ${route}` ? 'on-hover' : ''
     },
   },
 }
