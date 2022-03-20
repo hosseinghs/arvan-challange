@@ -35,7 +35,7 @@ export default {
     SET_TAGS(state, tags) {
       const list = state.tags
       list.splice(0)
-      addToArr(list, tags)
+      addToArr(list, tags.sort())
     },
     ADD_NEW_TAG_TO_THE_LIST(state, newTag) {
       state.tags.push(newTag)
