@@ -13,7 +13,7 @@ export default {
   name: 'RegisterLayout',
   middleware({ store, redirect }) {
     const userToken = localStorage.getItem('authorization')
-    if (userToken) redirect('/admin/articles')
+    if (userToken) redirect('/article')
     store.dispatch('register/setIsLoggedInState', !!userToken)
   },
 }
