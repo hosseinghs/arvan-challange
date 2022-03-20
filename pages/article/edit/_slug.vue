@@ -22,7 +22,9 @@
             :v="article.body"
             @change="setArticleData({ k: 'body', v: $event })"
           />
-          <b-btn type="submit" variant="primary">Submit</b-btn>
+          <b-btn type="submit" class="d-none d-lg-block" variant="primary"
+            >Submit
+          </b-btn>
         </b-form>
       </b-col>
       <b-col cols="12" lg="3">
@@ -53,6 +55,9 @@
             </b-form-checkbox>
           </b-form-checkbox-group>
         </div>
+        <b-btn type="submit" class="d-lg-none mt-3" variant="primary">
+          Submit
+        </b-btn>
       </b-col>
     </b-row>
   </div>
