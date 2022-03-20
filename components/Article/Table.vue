@@ -35,8 +35,8 @@
 
         <template #cell(actions)="data">
           <b-button-group class="mx-1">
-            <b-button>...</b-button>
-            <b-dropdown right>
+            <b-button class="bg-sky-blue">...</b-button>
+            <b-dropdown class="table-dropdown" right>
               <b-dropdown-item @click.stop="editPost(data.item)">
                 Edit
               </b-dropdown-item>
@@ -172,3 +172,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.table-dropdown {
+  background-color: #56cde0;
+}
+::v-deep button.dropdown-toggle {
+  background-color: #56cde0;
+}
+</style>
