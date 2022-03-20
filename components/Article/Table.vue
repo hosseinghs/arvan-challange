@@ -25,8 +25,8 @@
           </div>
         </template>
 
-        <template #cell(description)="data">
-          {{ data.item.description }}
+        <template #cell(body)="data">
+          {{ divideWordsFromSentence(data.item.body, 20) }}
         </template>
 
         <template #cell(createdAt)="data">
@@ -65,6 +65,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { Queries } from '~/models/queries'
+import { divideWordsFromSentence } from '~/utils/general'
 export default {
   name: 'ArticleTableComponent',
   data() {
@@ -82,7 +83,7 @@ export default {
           key: 'tags',
         },
         {
-          key: 'description',
+          key: 'body',
         },
         {
           key: 'createdAt',
@@ -119,6 +120,7 @@ export default {
     this.getData(page)
   },
   methods: {
+    divideWordsFromSentence,
     ...mapActions('warningGenerator', ['generateWarning', 'setWarningState']),
     ...mapActions('articleManagement', [
       'getArticles',

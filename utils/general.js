@@ -30,3 +30,7 @@ export function getArraysMutualObjects(arr1, arr2) {
     return arr2.indexOf(n) !== -1
   })
 }
+
+export function divideWordsFromSentence(str = '', numOfWords = 5) {
+  return str && numOfWords ? str.split(' ').splice(0, numOfWords).join(' ') : ''
+}
