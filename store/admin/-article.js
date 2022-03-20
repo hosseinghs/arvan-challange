@@ -1,8 +1,9 @@
 import {
-  getArticlesApi,
-  deleteArticleApi,
   editArticleApi,
+  getArticlesApi,
   createArticleApi,
+  deleteArticleApi,
+  getSingleArticleBySlug,
 } from '~/services/articles'
 
 import { getTagsApi } from '~/services/tags'
@@ -43,6 +44,9 @@ export default {
     },
     CLEAR_ARTICLE(state) {
       state.article = new Article()
+    },
+    SET_ARTICLE(state, article) {
+      state.article = Object.assign({}, article)
     },
   },
 
@@ -104,6 +108,15 @@ export default {
       async function apiCall(api) {
         const { status, data } = await getTagsApi(api)
         if (status === 200) commit('SET_TAGS', data.tags)
+        return true
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async getSingleArticleBySlug({ commit }, slug) {
+      async function apiCall(api) {
+        const { data } = await getSingleArticleBySlug(api, slug)
+        commit('SET_ARTICLE', data.article)
         return true
       }
       return await this.$apiCaller(apiCall)()

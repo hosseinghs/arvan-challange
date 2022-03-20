@@ -5,7 +5,7 @@
       <span style="color: #fff"> {{ userName }} </span>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <button @click.stop="logout()" class="btn">Logout</button>
+          <button class="btn" @click.stop="logout()">Logout</button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

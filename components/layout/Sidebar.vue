@@ -7,7 +7,7 @@
           v-for="{ id, route, name } in navigationItems"
           :key="id"
           :class="isActive(route)"
-          @click.stop="$router.push({ path: `/${route}` })"
+          @click.stop="$router.push({ path: `${route}` })"
         >
           <li>
             <span>{{ name }}</span>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     isActive(route) {
-      return this.$route.path === `/${route}` ? 'on-hover' : ''
+      return this.$route.path === `${route}` ? 'on-hover' : ''
     },
   },
 }

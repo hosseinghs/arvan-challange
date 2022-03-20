@@ -1,9 +1,8 @@
 <template>
-  <nuxt-child />
+  <ArticleTable />
 </template>
-
 <script>
 export default {
-  name: 'PaginatePage',
+  name: 'ArticlePage',
 }
 </script>

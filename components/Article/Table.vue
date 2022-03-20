@@ -100,7 +100,8 @@ export default {
     ...mapState('articleManagement', ['articles']),
     page: {
       get() {
-        if (this.$route.query.page) return this.$route.query.page
+        const _page = this.$route.params.page
+        if (_page) return +_page
         return 1
       },
       set(val) {
@@ -129,8 +130,8 @@ export default {
       if (!article) return null
       this.setEditingArticle(article)
       this.$router.push({
-        name: 'admin-create',
-        params: { isEdit: true },
+        name: 'article-edit-slug',
+        params: { slug: article.slug },
       })
     },
     generateWarningConfig(item) {
@@ -147,17 +148,21 @@ export default {
       if (typeof currentPage === 'number') page = currentPage
       else {
         const currentRoute = this.$route
-        if (currentRoute.query.page) page = +this.$route.query.page
+        if (currentRoute.params.page) page = +this.$route.params.page
         else page = 1
         this.currentPage = page
       }
       const offset = (page - 1) * 10
-      if (currentPage === 1) this.$router.push({ path: '/admin/articles' })
-      else if (currentPage && currentPage !== 1)
-        this.$router.push({
-          path: '/admin/articles',
-          query: { page },
-        })
+      if (currentPage === 1) {
+        this.$router.push({ path: '/article' })
+      }
+      console.log(currentPage)
+      //  else if (currentPage && currentPage !== 1) {
+      //   this.$router.push({
+      //     name: `/article/page`,
+      //     params: { page },
+      //   })
+      // }
       this.getArticles(offset)
     },
     async fireDeleteArticleAction(article) {
