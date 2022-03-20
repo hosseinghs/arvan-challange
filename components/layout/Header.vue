@@ -25,7 +25,7 @@ export default {
     logout() {
       localStorage.removeItem('authorization')
       localStorage.removeItem('admin')
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/login' })
     },
   },
 }
