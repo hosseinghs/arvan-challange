@@ -58,6 +58,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
     const userToken = window.localStorage.getItem('authorization')
     if (userToken) req.headers.authorization = `Token ${userToken}`
   })
+
   api.onResponseError((err) => {
     if (err) {
       if (err && err.response.status === 401) {
@@ -65,7 +66,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
         window.localStorage.removeItem('admin')
         redirect('/')
       }
-      console.log(err.response)
+      console.log('error', err.response)
       const msg = 'We have a Problem'
       const payload = {
         config: {
@@ -79,6 +80,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
     }
     store.dispatch('loading/setLoadingState', false)
   })
+
   const apiCaller = function (apiCallFunc, hasLoading = true) {
     return async function () {
       let result
@@ -91,7 +93,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
             store.dispatch('loading/setLoadingState', true)
           }, 200)
         }
-        result = await apiCallFunc(api)
+        result = (await apiCallFunc(api)) || true
       } catch (e) {
         result = false
       } finally {
@@ -101,5 +103,6 @@ export default function ({ $axios, store, env, redirect }, inject) {
       return result
     }
   }
+
   inject('apiCaller', apiCaller)
 }
