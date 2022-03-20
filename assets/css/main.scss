@@ -41,3 +41,6 @@ body {
   display: grid;
   place-items: center;
 }
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
