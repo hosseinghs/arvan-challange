@@ -115,8 +115,8 @@ export default {
 
     async getSingleArticleBySlug({ commit }, slug) {
       async function apiCall(api) {
-        const { data, status } = await getSingleArticleBySlug(api, slug)
-        if (status === 200) commit('SET_ARTICLE', data)
+        const { data } = await getSingleArticleBySlug(api, slug)
+        commit('SET_ARTICLE', data.article)
         return true
       }
       return await this.$apiCaller(apiCall)()
