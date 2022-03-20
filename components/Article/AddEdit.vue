@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ isEdit }}
     <b-row>
       <b-col cols="12" lg="9">
         <b-form @submit.prevent="submitForm()">
