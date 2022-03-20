@@ -1,4 +1,5 @@
 export default function ({ $axios, store, env, redirect }, inject) {
+ 
   store.registerModule('notification', {
     namespaced: true,
     state: () => ({
@@ -33,6 +34,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
       },
     },
   })
+
   store.registerModule('loading', {
     namespaced: true,
     state: () => ({

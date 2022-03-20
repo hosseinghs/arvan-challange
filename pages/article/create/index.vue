@@ -78,9 +78,6 @@ export default {
         return this.setArticleData({ k: 'title', v: val })
       },
     },
-    isEdit() {
-      return this.$route.params.isEdit
-    },
   },
   created() {
     this.getTags()
@@ -92,18 +89,16 @@ export default {
     getArraysMutualObjects,
     ...mapActions('articleManagement', [
       'getTags',
-      'editArticle',
       'clearArticle',
       'createArticle',
       'setArticleData',
       'addNewTagToTheList',
+      'getSingleArticleBySlug',
     ]),
     async submitForm() {
       if (this.isTitleValid) {
-        const res = this.isEdit
-          ? await this.editArticle()
-          : await this.createArticle()
-        if (res) this.$router.push({ path: '/' })
+        const res = await this.createArticle()
+        if (res) this.$router.push({ path: '/article' })
       } else this.isTitleValid = false
     },
     addNewTag(newTag) {
