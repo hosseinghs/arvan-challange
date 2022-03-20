@@ -15,3 +15,7 @@ export function editArticleApi(api, article) {
 export function deleteArticleApi(api, id) {
   return api.delete(baseURL + `/${id}`)
 }
+
+export function getSingleArticleBySlug(api, slug) {
+  return api.get(baseURL + `/${slug}`)
+}
