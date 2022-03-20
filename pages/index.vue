@@ -93,10 +93,11 @@ export default {
       'clearUserState',
       'registerUser',
     ]),
-    submitForm() {
-      if (this.isUsernameValid && this.isEmailValid && this.isPasswordValid)
-        this.registerUser()
-      else {
+    async submitForm() {
+      if (this.isUsernameValid && this.isEmailValid && this.isPasswordValid) {
+        const res = await this.registerUser()
+        if (res) this.$router.push({ path: '/login' })
+      } else {
         this.isUsernameValid = false
         this.isEmailValid = false
         this.isPasswordValid = false
