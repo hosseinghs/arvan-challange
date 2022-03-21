@@ -45,7 +45,7 @@
               :key="i"
               :value="tag"
               :checked="
-                isEdit
+                slug
                   ? getArraysMutualObjects(tags, article.tagList)
                   : article.tagList
               "
@@ -88,10 +88,12 @@ export default {
         return this.setArticleData({ k: 'title', v: val })
       },
     },
+    slug() {
+      return this.$route.params.slug
+    },
   },
   created() {
-    const slug = this.$route.params.slug
-    this.fireApies(slug)
+    this.fireApies(this.slug)
   },
   beforeDestroy() {
     this.clearArticle()
