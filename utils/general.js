@@ -34,3 +34,7 @@ export function getArraysMutualObjects(arr1, arr2) {
 export function divideWordsFromSentence(str = '', numOfWords = 5) {
   return str && numOfWords ? str.split(' ').splice(0, numOfWords).join(' ') : ''
 }
+
+export function mergeTwoObjects(obj1, obj2) {
+  return Object.assign({}, obj1, obj2)
+}
