@@ -8,19 +8,23 @@
             err-msg="Required field"
             :v="article.title"
             :valid-state="isTitleValid"
-            @change="setArticleData({ k: 'title', v: $event })"
+            @change="
+              lazyCaller(() => setArticleData({ k: 'title', v: $event }))
+            "
           />
           <FormInput
             label="Description"
             type="text"
             :v="article.description"
-            @change="setArticleData({ k: 'description', v: $event })"
+            @change="
+              lazyCaller(() => setArticleData({ k: 'description', v: $event }))
+            "
           />
           <FormInput
             label="Body"
             type="text"
             :v="article.body"
-            @change="setArticleData({ k: 'body', v: $event })"
+            @change="lazyCaller(() => setArticleData({ k: 'body', v: $event }))"
           />
           <b-btn type="submit" variant="primary">Submit</b-btn>
         </b-form>
@@ -61,8 +65,10 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { getArraysMutualObjects } from '~/utils/general'
+import lazyCaller from '~/mixins/lazyCaller'
 export default {
   name: 'AddOrEditArticlePage',
+  mixins: [lazyCaller],
   data() {
     return {
       newTag: null,
