@@ -43,7 +43,7 @@
               :key="i"
               :value="tag"
               :checked="
-                isEdit
+                slug
                   ? getArraysMutualObjects(tags, article.tagList)
                   : article.tagList
               "
@@ -78,12 +78,12 @@ export default {
         return this.setArticleData({ k: 'title', v: val })
       },
     },
-    isEdit() {
+    slug() {
       return this.$route.params.slug
     },
   },
   created() {
-    if (this.isEdit) this.getSingleArticleBySlug(this.isEdit)
+    if (this.slug) this.getSingleArticleBySlug(this.slug)
     this.getTags()
   },
   beforeDestroy() {
@@ -102,7 +102,7 @@ export default {
     ]),
     async submitForm() {
       if (this.isTitleValid) {
-        const res = this.isEdit
+        const res = this.slug
           ? await this.editArticle()
           : await this.createArticle()
         if (res) this.$router.push({ path: '/' })
