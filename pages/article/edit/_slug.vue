@@ -3,25 +3,50 @@
     <b-row>
       <b-col cols="12" lg="9">
         <b-form @submit.prevent="submitForm()">
-          <FormInput
-            label="Title"
-            err-msg="Required field"
-            :v="article.title"
-            :valid-state="isTitleValid"
-            @change="setArticleData({ k: 'title', v: $event })"
-          />
-          <FormInput
-            label="Description"
-            type="text"
-            :v="article.description"
-            @change="setArticleData({ k: 'description', v: $event })"
-          />
-          <FormInput
-            label="Body"
-            type="text"
-            :v="article.body"
-            @change="setArticleData({ k: 'body', v: $event })"
-          />
+          <div>
+            <b-form-group
+              role="group"
+              label="Title"
+              invalid-feedback="Requierd field"
+              class="text-start"
+            >
+              <b-form-input
+                v-model="titleValue"
+                :state="titleValue"
+                class="form-control"
+                type="text"
+              />
+            </b-form-group>
+          </div>
+          <div>
+            <b-form-group
+              role="group"
+              label="Description"
+              invalid-feedback="Requierd field"
+              class="text-start"
+            >
+              <b-form-input
+                v-model="descriptionValue"
+                class="form-control"
+                type="text"
+              />
+            </b-form-group>
+          </div>
+          <div>
+            <b-form-group
+              role="group"
+              label="Body"
+              invalid-feedback="Requierd field"
+              class="text-start"
+            >
+              <b-form-input
+                v-model="bodyValue"
+                class="form-control"
+                type="text"
+              />
+            </b-form-group>
+          </div>
+
           <b-btn type="submit" class="d-none d-lg-block" variant="primary">
             Submit
           </b-btn>
@@ -80,12 +105,28 @@ export default {
   },
   computed: {
     ...mapState('articleManagement', ['article', 'tags']),
-    isTitleValid: {
+    titleValue: {
       get() {
         return this.article.title
       },
       set(val) {
         return this.setArticleData({ k: 'title', v: val })
+      },
+    },
+    descriptionValue: {
+      get() {
+        return this.article.description
+      },
+      set(val) {
+        return this.setArticleData({ k: 'description', v: val })
+      },
+    },
+    bodyValue: {
+      get() {
+        return this.article.body
+      },
+      set(val) {
+        return this.setArticleData({ k: 'body', v: val })
       },
     },
     slug() {
