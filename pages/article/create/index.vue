@@ -44,11 +44,6 @@
               v-for="(tag, i) in tags"
               :key="i"
               :value="tag"
-              :checked="
-                isEdit
-                  ? getArraysMutualObjects(tags, article.tagList)
-                  : article.tagList
-              "
               class="d-block"
             >
               {{ tag }}
