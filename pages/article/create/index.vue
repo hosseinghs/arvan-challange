@@ -88,9 +88,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { getArraysMutualObjects } from '~/utils/general'
+import lazyCaller from '~/mixins/lazyCaller'
 export default {
   name: 'AddOrEditArticlePage',
+  mixins: [lazyCaller],
   data() {
     return {
       newTag: null,
@@ -103,7 +104,9 @@ export default {
         return this.article.title
       },
       set(val) {
-        return this.setArticleData({ k: 'title', v: val })
+        return this.lazyCaller(() =>
+          this.setArticleData({ k: 'title', v: val })
+        )
       },
     },
     descriptionValue: {
@@ -111,7 +114,9 @@ export default {
         return this.article.description
       },
       set(val) {
-        return this.setArticleData({ k: 'description', v: val })
+        return this.lazyCaller(() =>
+          this.setArticleData({ k: 'description', v: val })
+        )
       },
     },
     bodyValue: {
@@ -119,7 +124,7 @@ export default {
         return this.article.body
       },
       set(val) {
-        return this.setArticleData({ k: 'body', v: val })
+        return this.lazyCaller(() => this.setArticleData({ k: 'body', v: val }))
       },
     },
   },
@@ -130,7 +135,6 @@ export default {
     this.clearArticle()
   },
   methods: {
-    getArraysMutualObjects,
     ...mapActions('articleManagement', [
       'getTags',
       'clearArticle',
