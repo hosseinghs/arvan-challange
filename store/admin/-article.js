@@ -5,13 +5,15 @@ import {
   deleteArticleApi,
   getSingleArticleBySlug,
 } from '~/services/articles'
-
+import notification from '~/store/notification'
 import { getTagsApi } from '~/services/tags'
 import { Article } from '~/models/article'
 import { addToArr, deleteObjFromArr, deleteKeyFromObj } from '~/utils/general'
 
 export default {
   namespaced: true,
+  
+  modules: { notification },
 
   state: () => ({
     articles: {},
@@ -82,12 +84,18 @@ export default {
     async deleteArticle({ commit, dispatch }, slug) {
       async function apiCall(api) {
         const { status } = await deleteArticleApi(api, slug)
-        if (status === 204) commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
-        dispatch('notification/notify', {
-          color: 'success',
-          title: 'Article deleted successfuly',
-        })
-        return true
+        if (status === 204) {
+          commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
+          const payload = {
+            config: {
+              color: 'danger',
+              title: 'Article deleted successfully',
+            },
+            timer: 3000,
+          }
+          dispatch('notification/notify', payload)
+          return true
+        }
       }
       return await this.$apiCaller(apiCall)()
     },
