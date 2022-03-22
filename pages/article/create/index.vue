@@ -45,13 +45,18 @@
               />
             </b-form-group>
           </div>
-          <b-btn type="submit" class="d-none d-lg-block" variant="primary">
+          <b-btn
+            type="submit"
+            class="d-none d-lg-block"
+            variant="primary"
+            @click.stop="submitForm()"
+          >
             Submit
           </b-btn>
         </b-form>
       </b-col>
       <b-col cols="12" lg="3">
-       <div>
+        <div>
           <b-form-group role="group" label="Tags" class="text-start">
             <b-form-input
               v-model="newTag"
@@ -78,7 +83,6 @@
           </b-form-checkbox-group>
         </div>
         <b-btn
-          type="submit"
           class="d-lg-none mt-3"
           variant="primary"
           @click.stop="submitForm()"
@@ -148,10 +152,10 @@ export default {
       'getSingleArticleBySlug',
     ]),
     async submitForm() {
-      if (this.isTitleValid) {
+      if (this.titleValue && this.titleValue && this.bodyValue) {
         const res = await this.createArticle()
         if (res) this.$router.push({ path: '/article' })
-      } else this.isTitleValid = false
+      }
     },
     addNewTag(newTag) {
       this.addNewTagToTheList(newTag)
