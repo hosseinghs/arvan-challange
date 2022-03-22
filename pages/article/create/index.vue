@@ -45,12 +45,7 @@
               />
             </b-form-group>
           </div>
-          <b-btn
-            type="submit"
-            class="d-none d-lg-block"
-            variant="primary"
-            @click.stop="submitForm()"
-          >
+          <b-btn type="submit" class="d-none d-lg-block" variant="primary">
             Submit
           </b-btn>
         </b-form>
