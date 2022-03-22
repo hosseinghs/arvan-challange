@@ -72,6 +72,7 @@
               :key="i"
               :value="tag"
               class="d-block"
+              :checked="getArraysMutualObjects(tags, article.tagList)"
             >
               {{ tag }}
             </b-form-checkbox>
@@ -91,6 +92,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { getArraysMutualObjects } from '~/utils/general'
 import lazyCaller from '~/mixins/lazyCaller'
 export default {
   name: 'AddOrEditArticlePage',
@@ -138,6 +140,7 @@ export default {
     this.clearArticle()
   },
   methods: {
+    getArraysMutualObjects,
     ...mapActions('articleManagement', [
       'getTags',
       'clearArticle',

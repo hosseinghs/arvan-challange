@@ -85,7 +85,6 @@
           </b-form-checkbox-group>
         </div>
         <b-btn
-          type="submit"
           class="d-lg-none mt-3"
           variant="primary"
           @click.stop="submitForm()"
