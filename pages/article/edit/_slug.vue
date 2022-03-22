@@ -164,10 +164,10 @@ export default {
       Promise.all(promises)
     },
     async submitForm() {
-      if (this.isTitleValid) {
+      if (this.titleValue && this.descriptionValue && this.bodyValue) {
         const res = await this.editArticle()
         if (res) this.$router.push({ path: '/' })
-      } else this.isTitleValid = false
+      }
     },
     addNewTag(newTag) {
       this.addNewTagToTheList(newTag)
