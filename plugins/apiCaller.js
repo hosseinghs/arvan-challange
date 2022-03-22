@@ -1,39 +1,7 @@
 export default function ({ $axios, store, env, redirect }, inject) {
- 
-  store.registerModule('notification', {
-    namespaced: true,
-    state: () => ({
-      isVisible: false,
-      notif: {
-        color: '',
-        title: '',
-      },
-      timer: 5000,
-    }),
-    mutations: {
-      SET_IS_VISIBLE(state, isVisible) {
-        state.isVisible = isVisible
-      },
-      SET_NOTIF(state, notifConfig) {
-        Object.assign(state.notif, notifConfig)
-      },
-      SET_TIMER(state, timer) {
-        state.timer = timer
-      },
-    },
-    actions: {
-      notify({ commit }, { config, timer }) {
-        if (timer === 0) return
-        commit('SET_NOTIF', config)
-        commit('SET_TIMER', timer)
-        commit('SET_IS_VISIBLE', true)
-        if (timer === -1) return
-        setTimeout(() => {
-          commit('SET_IS_VISIBLE', false)
-        }, timer)
-      },
-    },
-  })
+  /* -------------------------------------------------------------------------- */
+  /*                            create loading module                           */
+  /* -------------------------------------------------------------------------- */
 
   store.registerModule('loading', {
     namespaced: true,
@@ -52,14 +20,26 @@ export default function ({ $axios, store, env, redirect }, inject) {
     },
   })
 
+  /* -------------------------------------------------------------------------- */
+  /*                           initiate axios instance                          */
+  /* -------------------------------------------------------------------------- */
+
   const api = $axios.create({ baseURL: env.baseURL })
 
   api.setHeader('Content-Type', 'application/json', ['post'])
+
+  /* -------------------------------------------------------------------------- */
+  /*                             authorize api calls                            */
+  /* -------------------------------------------------------------------------- */
 
   api.onRequest((req) => {
     const userToken = window.localStorage.getItem('authorization')
     if (userToken) req.headers.authorization = `Token ${userToken}`
   })
+
+  /* -------------------------------------------------------------------------- */
+  /*                               error handeling                              */
+  /* -------------------------------------------------------------------------- */
 
   api.onResponseError((err) => {
     if (err) {
@@ -78,7 +58,6 @@ export default function ({ $axios, store, env, redirect }, inject) {
         timer: 3000,
       }
       store.dispatch('notification/notify', payload)
-      throw new Error(msg)
     }
     store.dispatch('loading/setLoadingState', false)
   })
