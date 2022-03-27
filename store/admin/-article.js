@@ -12,7 +12,7 @@ import { addToArr, deleteObjFromArr, deleteKeyFromObj } from '~/utils/general'
 
 export default {
   namespaced: true,
-  
+
   modules: { notification },
 
   state: () => ({
@@ -86,14 +86,11 @@ export default {
         const { status } = await deleteArticleApi(api, slug)
         if (status === 204) {
           commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
-          const payload = {
-            config: {
-              color: 'danger',
-              title: 'Article deleted successfully',
-            },
-            timer: 3000,
+          const config = {
+            color: 'danger',
+            title: 'Article deleted successfully',
           }
-          dispatch('notification/notify', payload)
+          dispatch('notification/notify', config)
           return true
         }
       }
@@ -102,7 +99,7 @@ export default {
 
     async editArticle({ state }) {
       const article = state.article
-      
+
       deleteKeyFromObj(article, 'author')
       deleteKeyFromObj(article, 'favorited')
       deleteKeyFromObj(article, 'createdAt')
