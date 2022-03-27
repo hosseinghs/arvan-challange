@@ -106,7 +106,6 @@ export default {
       deleteKeyFromObj(article, 'favorited')
       deleteKeyFromObj(article, 'createdAt')
       deleteKeyFromObj(article, 'favoritesCount')
-      deleteKeyFromObj(article, 'favoritesCount')
 
       async function apiCall(api) {
         await editArticleApi(api, article)
