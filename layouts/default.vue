@@ -16,7 +16,7 @@
 
 <script>
 import articleModule from '~/store/admin/-article'
-import warningGeneratorModule from '~/store/warningGenerator'
+import warningGeneratorModule from '~/store/-warningGenerator'
 export default {
   name: 'DefaultLayout',
   middleware({ store, redirect }) {
