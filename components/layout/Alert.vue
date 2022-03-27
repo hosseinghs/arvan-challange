@@ -11,7 +11,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'AlertCompoent',
   computed: {
-    ...mapState('notification', ['isVisible', 'notif', 'timer']),
+    ...mapState('notification', ['isVisible', 'notif']),
   },
 }
 </script>
