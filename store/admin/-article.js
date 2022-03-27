@@ -93,11 +93,14 @@ export default {
         const { status } = await deleteArticleApi(api, slug)
         if (status === 204) {
           commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
-          const config = {
-            color: 'danger',
-            title: 'Article deleted successfully',
+          const payload = {
+            config: {
+              color: 'danger',
+              title: 'Article deleted successfully',
+            },
+            timer: 3000,
           }
-          dispatch('notification/notify', config)
+          dispatch('notification/notify', payload)
           return true
         }
       }
