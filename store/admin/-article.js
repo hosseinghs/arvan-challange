@@ -25,28 +25,35 @@ export default {
     SET_ARTICLES_LIST(state, payload) {
       state.articles = Object.assign({}, payload)
     },
+
     SET_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
+
     SET_EDITING_ARTICLE(state, editingArticle) {
       state.article = editingArticle
     },
+
     DELETE_ARTICLE_FROM_THE_LIST(state, slug) {
       const arr = state.articles.articles
       deleteObjFromArr(arr, 'slug', slug)
     },
+
     SET_TAGS(state, tags) {
       const list = state.tags
       list.splice(0)
       addToArr(list, tags.sort())
     },
+
     ADD_NEW_TAG_TO_THE_LIST(state, newTag) {
       state.tags.push(newTag)
       state.article.tagList.push(newTag)
     },
+
     CLEAR_ARTICLE(state) {
       state.article = new Article()
     },
+
     SET_ARTICLE(state, article) {
       state.article = Object.assign({}, article)
     },
