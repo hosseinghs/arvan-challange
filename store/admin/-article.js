@@ -102,6 +102,7 @@ export default {
 
     async editArticle({ state }) {
       const article = state.article
+      
       deleteKeyFromObj(article, 'author')
       deleteKeyFromObj(article, 'favorited')
       deleteKeyFromObj(article, 'createdAt')
