@@ -84,13 +84,13 @@
             </b-form-checkbox>
           </b-form-checkbox-group>
         </div>
-        <b-btn
+        <b-button
           class="d-lg-none mt-3"
           variant="primary"
           @click.stop="submitForm()"
         >
           Submit
-        </b-btn>
+        </b-button>
       </b-col>
     </b-row>
   </div>
