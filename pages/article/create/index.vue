@@ -80,13 +80,15 @@
             </b-form-checkbox>
           </b-form-checkbox-group>
         </div>
-        <b-btn
-          class="d-lg-none mt-3"
-          variant="primary"
-          @click.stop="submitForm()"
-        >
-          Submit
-        </b-btn>
+        <b-form-group>
+          <b-button
+            class="d-lg-none mt-3"
+            variant="primary"
+            @click.stop="submitForm()"
+          >
+            Submit
+          </b-button>
+        </b-form-group>
       </b-col>
     </b-row>
   </div>
