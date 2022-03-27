@@ -8,7 +8,7 @@
         <b-button
           variant="outline"
           class="px-3 border"
-          @click.stop="warningState(false)"
+          @click.stop="setWarningState(false)"
         >
           No
         </b-button>
