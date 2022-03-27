@@ -45,9 +45,11 @@
               />
             </b-form-group>
           </div>
-          <b-btn type="submit" class="d-none d-lg-block" variant="primary">
-            Submit
-          </b-btn>
+          <b-form-group>
+            <b-button type="submit" class="d-none d-lg-block" variant="primary">
+              Submit
+            </b-button>
+          </b-form-group>
         </b-form>
       </b-col>
       <b-col cols="12" lg="3">
