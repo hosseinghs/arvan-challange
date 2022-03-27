@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import storeModule from '~/store/admin/-article'
-
+import articleModule from '~/store/admin/-article'
+import warningGeneratorModule from '~/store/warningGenerator'
 export default {
   name: 'DefaultLayout',
   middleware({ store, redirect }) {
@@ -26,10 +26,13 @@ export default {
   },
   beforeCreate() {
     if (!this.$store.hasModule('articleManagement'))
-      this.$store.registerModule('articleManagement', storeModule)
+      this.$store.registerModule('articleManagement', articleModule)
+    if (!this.$store.hasModule('warningGenerator'))
+      this.$store.registerModule('warningGenerator', warningGeneratorModule)
   },
   beforeDestroy() {
     this.$store.unregisterModule('articleManagement')
+    this.$store.unregisterModule('warningGenerator')
   },
 }
 </script>
