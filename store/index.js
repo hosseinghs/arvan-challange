@@ -8,11 +8,13 @@ export default {
         id: 1,
         name: 'Articles',
         route: '/article',
+        path: 'article',
       },
       {
         id: 2,
         name: 'New Articles',
         route: 'article/create',
+        path: 'create',
       },
     ],
   }),

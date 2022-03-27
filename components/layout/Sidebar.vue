@@ -4,13 +4,13 @@
     <div>
       <ul class="m-0 p-0">
         <a
-          v-for="{ id, route, name } in navigationItems"
-          :key="id"
-          :class="isActive(route)"
-          @click.stop="$router.push({ path: `${route}` })"
+          v-for="item in navigationItems"
+          :key="item.id"
+          :class="isActive(item)"
+          @click.stop="$router.push({ path: `${item.route}` })"
         >
           <li>
-            <span>{{ name }}</span>
+            <span>{{ item.name }}</span>
           </li>
         </a>
       </ul>
@@ -26,8 +26,12 @@ export default {
     ...mapState(['navigationItems']),
   },
   methods: {
-    isActive(route) {
-      return this.$route.path === ` ${route}` ? 'on-hover' : ''
+    isActive({ path }) {
+      const routePathArr = this.$route.path.split('/')
+      const lastItem = routePathArr[routePathArr.length - 1]
+      if (path === lastItem) return 'on-hover'
+      else if (path === 'article' && !isNaN(+this.$route.params.page))
+        return 'on-hover'
     },
   },
 }
