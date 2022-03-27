@@ -6,11 +6,19 @@
         <div class="d-none d-lg-block">
           {{ userName }}
         </div>
-        <button class="btn d-lg-none" @click.stop="logout()">Logout</button>
+        <b-button
+          class="d-lg-none"
+          variant="outline-info"
+          @click.stop="logout()"
+        >
+          Logout
+        </b-button>
       </span>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <button class="btn" @click.stop="logout()">Logout</button>
+          <b-button variant="outline-info" @click.stop="logout()">
+            Logout
+          </b-button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
