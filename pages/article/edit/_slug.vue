@@ -12,6 +12,7 @@
             >
               <b-form-input
                 v-model="titleValue"
+                :state="isTitleValid"
                 class="form-control"
                 type="text"
               />
@@ -26,6 +27,7 @@
             >
               <b-form-input
                 v-model="descriptionValue"
+                :state="isdDescriptionValid"
                 class="form-control"
                 type="text"
               />
@@ -40,6 +42,7 @@
             >
               <b-form-input
                 v-model="bodyValue"
+                :state="isBodyValid"
                 class="form-control"
                 type="text"
               />
@@ -102,12 +105,18 @@ import { getArraysMutualObjects } from '~/utils/general'
 import lazyCaller from '~/mixins/lazyCaller'
 export default {
   name: 'AddOrEditArticlePage',
+
   mixins: [lazyCaller],
+
   data() {
     return {
       newTag: null,
+      isTitleValid: null,
+      isdDescriptionValid: null,
+      isBodyValid: null,
     }
   },
+
   computed: {
     ...mapState('articleManagement', ['article', 'tags']),
     titleValue: {
@@ -138,16 +147,35 @@ export default {
         return this.lazyCaller(() => this.setArticleData({ k: 'body', v: val }))
       },
     },
+
     slug() {
       return this.$route.params.slug
     },
   },
+
+  watch: {
+    titleValue(val) {
+      if (val.length) this.isTitleValid = true
+      else this.isTitleValid = false
+    },
+    descriptionValue(val) {
+      if (val.length) this.isdDescriptionValid = true
+      else this.isdDescriptionValid = false
+    },
+    bodyValue(val) {
+      if (val.length) this.isBodyValid = true
+      else this.isBodyValid = false
+    },
+  },
+
   created() {
     this.fireApies(this.slug)
   },
+
   beforeDestroy() {
     this.clearArticle()
   },
+
   methods: {
     getArraysMutualObjects,
     ...mapActions('articleManagement', [
@@ -158,16 +186,19 @@ export default {
       'addNewTagToTheList',
       'getSingleArticleBySlug',
     ]),
+
     fireApies(slug) {
       const promises = [this.getSingleArticleBySlug(slug), this.getTags()]
       Promise.all(promises)
     },
+
     async submitForm() {
       if (this.titleValue && this.descriptionValue && this.bodyValue) {
         const res = await this.editArticle()
         if (res) this.$router.push({ path: '/' })
       }
     },
+
     addNewTag(newTag) {
       this.addNewTagToTheList(newTag)
       this.newTag = ''
