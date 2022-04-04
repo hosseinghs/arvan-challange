@@ -30,37 +30,7 @@
         </b-form>
       </b-col>
       <b-col cols="12" lg="3">
-        <div>
-          <b-form-group role="group" label="Tags" class="text-start">
-            <b-form-input
-              v-model="newTag"
-              class="form-control"
-              placeholder="New Tag"
-              type="text"
-              @keypress.enter="addNewTag(newTag)"
-            />
-          </b-form-group>
-        </div>
-        <div class="tag-list">
-          <b-form-checkbox-group
-            :value="article.tagList"
-            @change="setArticleData({ k: 'tagList', v: $event })"
-          >
-            <b-form-checkbox
-              v-for="(tag, i) in tags"
-              :key="i"
-              :value="tag"
-              :checked="
-                slug
-                  ? getArraysMutualObjects(tags, article.tagList)
-                  : article.tagList
-              "
-              class="d-block"
-            >
-              {{ tag }}
-            </b-form-checkbox>
-          </b-form-checkbox-group>
-        </div>
+        <ArticleTags />
       </b-col>
     </b-row>
   </div>
