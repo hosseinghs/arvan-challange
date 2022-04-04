@@ -56,33 +56,7 @@
         </b-form>
       </b-col>
       <b-col cols="12" lg="3">
-        <div>
-          <b-form-group role="group" label="Tags" class="text-start">
-            <b-form-input
-              v-model="newTag"
-              class="form-control"
-              placeholder="New Tag"
-              type="text"
-              @keypress.enter="addNewTag(newTag)"
-            />
-          </b-form-group>
-        </div>
-        <div class="tag-list">
-          <b-form-checkbox-group
-            :value="article.tagList"
-            @change="setArticleData({ k: 'tagList', v: $event })"
-          >
-            <b-form-checkbox
-              v-for="(tag, i) in tags"
-              :key="i"
-              :value="tag"
-              class="d-block"
-              :checked="getArraysMutualObjects(tags, article.tagList)"
-            >
-              {{ tag }}
-            </b-form-checkbox>
-          </b-form-checkbox-group>
-        </div>
+        <ArticleTags />
         <b-form-group>
           <b-button
             class="d-lg-none mt-3"
@@ -108,7 +82,6 @@ export default {
 
   data() {
     return {
-      newTag: null,
       isTitleValid: null,
       isdDescriptionValid: null,
       isBodyValid: null,
@@ -161,10 +134,6 @@ export default {
       else this.isBodyValid = false
     },
   },
-  
-  created() {
-    this.getTags()
-  },
 
   beforeDestroy() {
     this.clearArticle()
@@ -173,13 +142,12 @@ export default {
   methods: {
     getArraysMutualObjects,
     ...mapActions('articleManagement', [
-      'getTags',
       'clearArticle',
       'createArticle',
       'setArticleData',
-      'addNewTagToTheList',
       'getSingleArticleBySlug',
     ]),
+    
     async submitForm() {
       if (this.isTitleValid && this.isdDescriptionValid && this.isBodyValid) {
         const res = await this.createArticle()
@@ -190,18 +158,6 @@ export default {
         this.isdDescriptionValid = false
       }
     },
-    addNewTag(newTag) {
-      this.addNewTagToTheList(newTag)
-      this.newTag = ''
-    },
   },
 }
 </script>
-
-<style scoped>
-.tag-list {
-  padding: 0.5em;
-  border-radius: 4px;
-  border: solid 1px #ddd;
-}
-</style>
