@@ -130,7 +130,6 @@ export default {
     titleValue(val) {
       if (val.length) this.isTitleValid = true
       else this.isTitleValid = false
-      console.log(this.isTitleValid)
     },
     descriptionValue(val) {
       if (val.length) this.isdDescriptionValid = true
