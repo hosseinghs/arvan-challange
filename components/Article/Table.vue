@@ -126,12 +126,10 @@ export default {
       'getArticles',
       'deleteArticle',
       'setArticleData',
-      'setEditingArticle',
     ]),
     
     editPost(article) {
       if (!article) return null
-      this.setEditingArticle(article)
       this.$router.push({
         name: 'article-edit-slug',
         params: { slug: article.slug },
