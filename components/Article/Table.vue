@@ -68,6 +68,7 @@ import { Queries } from '~/models/queries'
 import { divideWordsFromSentence } from '~/utils/general'
 export default {
   name: 'ArticleTableComponent',
+
   data() {
     return {
       fields: [
@@ -97,6 +98,7 @@ export default {
       queries: new Queries(),
     }
   },
+
   computed: {
     ...mapState('articleManagement', ['articles']),
     page: {
@@ -110,24 +112,28 @@ export default {
       },
     },
   },
+
   watch: {
     page(val) {
       if (val === 1) this.getData(+val)
     },
   },
+
   created() {
     const page = this.page
     this.getData(page)
   },
+
   methods: {
     divideWordsFromSentence,
+    ...mapActions('notification', ['notify']),
     ...mapActions('warningGenerator', ['generateWarning', 'setWarningState']),
     ...mapActions('articleManagement', [
       'getArticles',
       'deleteArticle',
       'setArticleData',
     ]),
-    
+
     editPost(article) {
       if (!article) return null
       this.$router.push({
@@ -171,7 +177,17 @@ export default {
 
     async fireDeleteArticleAction(article) {
       const res = await this.deleteArticle(article.slug)
-      if (res) this.setWarningState(false)
+      if (res) {
+        this.setWarningState(false)
+        const payload = {
+          config: {
+            color: 'success',
+            title: 'Article deleted successfully',
+          },
+          timer: 2000,
+        }
+        this.notify(payload)
+      }
     },
   },
 }

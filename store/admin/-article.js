@@ -80,19 +80,11 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async deleteArticle({ commit, dispatch }, slug) {
+    async deleteArticle({ commit }, slug) {
       async function apiCall(api) {
         const { status } = await deleteArticleApi(api, slug)
         if (status === 204) {
           commit('DELETE_ARTICLE_FROM_THE_LIST', slug)
-          const payload = {
-            config: {
-              color: 'danger',
-              title: 'Article deleted successfully',
-            },
-            timer: 3000,
-          }
-          dispatch('notification/notify', payload)
           return true
         }
       }
