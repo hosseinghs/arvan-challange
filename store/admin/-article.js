@@ -30,10 +30,6 @@ export default {
       state.article[k] = v
     },
 
-    SET_EDITING_ARTICLE(state, editingArticle) {
-      state.article = editingArticle
-    },
-
     DELETE_ARTICLE_FROM_THE_LIST(state, slug) {
       const arr = state.articles.articles
       deleteObjFromArr(arr, 'slug', slug)
@@ -62,10 +58,6 @@ export default {
   actions: {
     setArticleData({ commit }, { k, v }) {
       commit('SET_ARTICLE_DATA', { k, v })
-    },
-
-    setEditingArticle({ commit }, editingArticle) {
-      commit('SET_EDITING_ARTICLE', editingArticle)
     },
 
     addNewTagToTheList({ commit }, newTag) {
