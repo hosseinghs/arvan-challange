@@ -163,11 +163,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.tag-list {
-  padding: 0.5em;
-  border-radius: 4px;
-  border: solid 1px #ddd;
-}
-</style>
